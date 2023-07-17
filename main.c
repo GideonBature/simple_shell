@@ -31,6 +31,7 @@ int main(int argc, char **argv, char **env)
 void _strtok(char *_lineptr)
 {
 	char *cmd = strtok(_lineptr, " ");
+	int i = 0;
 
 	while (cmd)
 	{
