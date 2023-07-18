@@ -1,200 +1,916 @@
-# 0x16. C - Simple Shell
+  window.dataLayer = window.dataLayer || \[\]; dataLayer.push({"userId":295751,"visitorType":"student","batch":{"id":92,"fullNameWithC":"LOS-0423 (C#15)","schoolLocation":{"id":3,"name":"Lagos"}},"curriculum":{"id":1,"name":"SE Foundations"}}); window.gtm\_user\_custom_event = function (name, options) { if (typeof name === 'undefined') { return; } window.dataLayer.push({ customEventOptions: typeof options !== 'undefined' ? options : {}, event: name, }); } (function(w,d,s,l,i){w\[l\]=w\[l\]||\[\];w\[l\].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)\[0\], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); })(window,document,'script','dataLayer','GTM-N4C8MF2'); Project: 0x16. C - Simple Shell | Lagos Intranet  Cookies.set('timezone', (new Date()).getTimezoneOffset() / -60.0); 
 
-## Project Details
-- Project: Simple Shell
-- Language: C
-- Project Type: Group project
-- Syscall
-- Project Lead: Julien Barbier
-- Weight: 10
-- Team: Gideon Bature, Wright OGUNDIYA
-- Start Date: Jul 12, 2023 6:00 AM
-- End Date: Jul 27, 2023 6:00 AM
-- Checker Release Date: Jul 26, 2023 1:12 AM
-- Auto review will be launched at the deadline
+Toggle navigation[](https://intranet.alxswe.com/)
 
-## Concepts
-For this project, you are expected to be familiar with the following concepts:
-- Everything you need to know to start coding your own shell
-- Approaching a Project
-- Background Context
-- Write a simple UNIX command interpreter
-- "The Gates of Shell" by Spencer Cheng, featuring Julien Barbier
+* [My Planning](https://intranet.alxswe.com/planning/me)
+* [Projects](https://intranet.alxswe.com/projects/current)
+* [QA Reviews I can make](https://intranet.alxswe.com/corrections/to_review)
+* [Evaluation quizzes](https://intranet.alxswe.com/dashboards/my_current_evaluation_quizzes)
 
-## Important message from Julien
-Julien emphasizes the importance and challenge of the Simple Shell project. He reminds students of the following key points:
-- Basics of programming, C, thinking like an engineer, group work, and learning how to learn.
-- Copying code or looking at solutions is strictly prohibited.
-- Never copy code, look at solutions, or give solutions to friends.
-- Always write code alone from scratch after getting help to ensure understanding.
-- Sharing resources or using AI tools like ChatGPT for coding solutions is not allowed.
-- The project provides all the necessary knowledge, and using external resources or shortcuts undermines learning.
-- Group projects require collaboration, responsibility, and mutual understanding of the code pushed to the repository.
-- Plagiarism and cheating will not be tolerated.
+* * *
 
-## Resources
-Students are advised to read or watch the following materials:
-- Unix shell
-- Thompson shell
-- Ken Thompson
-- Everything you need to know to start coding your own shell concept page
-- Man or help: sh (Run sh as well)
+* [Curriculums](https://intranet.alxswe.com/dashboards/my_curriculums)
+* [Concepts](https://intranet.alxswe.com/concepts)
+* [Conference rooms](https://intranet.alxswe.com/dashboards/video_rooms)
+* [Servers](https://intranet.alxswe.com/servers)
+* [Sandboxes](https://intranet.alxswe.com/user_containers/current)
+* [Video on demand](https://intranet.alxswe.com/dashboards/videos)
 
-## Learning Objectives
-By the end of this project, students should be able to explain the following topics without using Google:
-- General knowledge about the design and implementation of the original Unix operating system
-- The first version of the UNIX shell was written by
-- The inventor of the B programming language (the direct predecessor to the C programming language)
-- Who is Ken Thompson
-- How a shell works
-- The meaning of pid and ppid
-- How to manipulate the environment of the current process
-- The difference between a function and a system call
-- How to create processes
-- The three prototypes of the main function
-- How the shell uses the PATH to find programs
-- How to execute another program with the execve system call
-- How to suspend the execution of a process until one of its children terminates
-- The meaning of EOF (end-of-file)
+* * *
 
-## Copyright - Plagiarism
-Students are reminded of the strict guidelines regarding plagiarism:
-- All solutions for the tasks should be developed by the students themselves.
-- Copying and pasting someone else's work is strictly forbidden.
-- Publishing any content of this project is not allowed.
-- Plagiarism will result in removal from the program.
+* [Peers](https://intranet.alxswe.com/users/peers)
+* [Captain's Logs](https://intranet.alxswe.com/dashboards/my_captain_log)
 
-## Requirements
-General requirements for the project include:
-- Allowed editors: vi, vim, emacs
-- Compilation on Ubuntu 20.04 LTS using gcc with the following options: -Wall -Werror -Wextra -pedantic -std=gnu89
-- All files should end with a new line
-- The project should include a README.md file at the root of the folder
-- Code should follow the Betty style, which will be checked using betty-style.pl and betty-doc.pl
-- The shell should not have any memory leaks
-- Each file should contain no more than 5 functions
-- All header files should be include guarded
-- System calls should be used only when necessary
-- A README file should be included with a description of the project
-- An AUTHORS file should be created at the root of the repository, listing all individuals who contributed to the repository
+* * *
 
-## GitHub Repository
-The project should be organized in a GitHub repository with the name "simple_shell". It is important to ensure that both partners have a repository with the same name to avoid a 0% score. Collaborators should be added to the repository to facilitate collaboration.
+* [Slack](https://alx-students.slack.com/)
+    
+    [My Profile](https://intranet.alxswe.com/users/my_profile)
+    
 
-## More Information
-- The output of the shell should be the same as the sh (/bin/sh) shell, including error output.
-- Allowed functions and system calls include access, chdir, close, closedir, execve, exit, _exit, fflush, fork, free, getpid, isatty, kill, malloc, open, opendir, perror, read, readdir, signal, stat (__xstat), lstat (__lxstat), fstat (__fxstat), strtok, wait, waitpid, wait3, wait4, and write.
-- Compilation of the shell should follow the command: gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh.
-- Testing the shell should include interactive
-- Testing the shell should include interactive tests, scripts tests, and edge case tests.
-- Interactive tests should be similar to a shell session and include the shell prompt ($), user commands, and expected outputs.
-- Script tests should include various scripts with different commands and expected outputs.
-- Edge case tests should consider unconventional scenarios and verify the behavior of the shell.
+[](https://intranet.alxswe.com/)
 
-## General Structure
-The project should follow this general structure:
-- A main.c file that contains the main function
-- A shell.h header file that includes all the function prototypes and struct declarations
-- A shell.c file that contains the shell loop and shell-related functions
-- Additional C files as needed for specific functions
+* [My Planning](https://intranet.alxswe.com/planning/me)
+* [Projects](https://intranet.alxswe.com/projects/current)
+* [QA Reviews I can make](https://intranet.alxswe.com/corrections/to_review)
+* [Evaluation quizzes](https://intranet.alxswe.com/dashboards/my_current_evaluation_quizzes)
 
-## Compilation
-To compile the shell, use the following command:
-gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+* * *
 
+* [Curriculums](https://intranet.alxswe.com/dashboards/my_curriculums)
+* [Concepts](https://intranet.alxswe.com/concepts)
+* [Conference rooms](https://intranet.alxswe.com/dashboards/video_rooms)
+* [Servers](https://intranet.alxswe.com/servers)
+* [Sandboxes](https://intranet.alxswe.com/user_containers/current)
+* [Video on demand](https://intranet.alxswe.com/dashboards/videos)
 
-## Testing
+* * *
 
-Your shell should work in both interactive and non-interactive modes. Here are examples of usage:
+* [Peers](https://intranet.alxswe.com/users/peers)
+* [Captain's Logs](https://intranet.alxswe.com/dashboards/my_captain_log)
 
-Interactive mode:
+* * *
 
-$ ./hsh
-($) /bin/ls
-hsh main.c shell.c
-($) exit
-$
+* [Slack](https://alx-students.slack.com/)
+    
+    [My Profile](https://intranet.alxswe.com/users/my_profile)
+    
 
+0x16. C - Simple Shell
+======================
 
-Non-interactive mode:
+CGroup projectSyscall
 
-$ echo "/bin/ls" | ./hsh
-hsh main.c shell.c test_script.sh
-$
+* By: Julien Barbier
+* Weight: 10
+* Project to be done in teams of 2 people (your team: Gideon Bature, Wright OGUNDIYA)
+* Project will start Jul 12, 2023 6:00 AM, must end by Jul 27, 2023 6:00 AM
+* Checker will be released at Jul 26, 2023 1:12 AM
+* An auto review will be launched at the deadline
 
+### Concepts
 
+_For this project, we expect you to look at these concepts:_
 
-## How to Use
-To use the shell, follow these steps:
-1. Compile the shell using the compilation command mentioned above.
-2. Run the compiled program using `./hsh`.
+* [Everything you need to know to start coding your own shell](https://intranet.alxswe.com/concepts/64)
+* [Approaching a Project](https://intranet.alxswe.com/concepts/350)
 
-## Example Usage
-Here's an example usage of the shell:
+Background Context
+------------------
 
-## Tasks
+Write a simple UNIX command interpreter.
 
-The project consists of the following tasks:
+![](./Project_ 0x16. C - Simple Shell _ Lagos Intranet_files/shell.jpeg)
 
-1. **Betty would be proud**
+_^ “The Gates of Shell”, by [Spencer Cheng](https://intranet.alxswe.com/rltoken/AtYRSM03vJDrko9xHodxFQ "Spencer Cheng"), featuring [Julien Barbier](https://intranet.alxswe.com/rltoken/-ezXgcyfhc8qU1DeUInLUA "Julien Barbier")_
 
-   Write a beautiful code that passes the Betty checks.
+Important message from Julien
+-----------------------------
 
-2. **Simple shell 0.1**
+It’s time for the famous Simple Shell project. This is one of the most anticipated project and also one that will challenge you a lot about everything you have learn so far:
 
-   Write a UNIX command line interpreter that displays a prompt and waits for the user to enter a command. Handle basic commands without arguments and display the prompt again after executing a command. Print an error message if an executable is not found.
+* Basics of programming
+* Basics of C
+* Basics of thinking like an engineer
+* Group work
+* and Learning how to learn
 
-3. **Simple shell 0.2**
+I would like to take this moment to remind you about a few important things.
 
-   Extend the shell to handle command lines with arguments.
+First, remember the framework. If you do not know it by heart already, it is probably a good idea to read it again: [https://intranet.alxswe.com/concepts/559](https://intranet.alxswe.com/rltoken/a08_c01OP1XHY3awtkdFRA "https://intranet.alxswe.com/concepts/559")
 
-4. **Simple shell 0.3**
+Note that there is no point in this framework that says it is ok to look at code from other people. It is not allowed to look at other people’s code, either other students or online articles or videos. At ALX SE we do not copy solutions and we do not look at it when we start a project.
 
-   Enhance the shell to handle the PATH variable and only call fork if the command exists.
+In the context of learning (some of these will no longer be true when you work):
 
-5. **Simple shell 0.4**
+* NEVER copy any code, never look at solution (and never give any solution to your friends, you are not helping them by doing so)
+* ALWAYS write code alone from scratch after you get help to check that you have actually understood. If you can not do it, you have not understood enough, and need to study more. Do not rewrite code from memory, but from understanding.
 
-   Implement the exit built-in command that exits the shell. The command should be interpreted as "exit" without any arguments.
+I saw some of you sharing resources with each other already. Tutorials on how to do the shell step by step with all the code associated with these, or even video and documents with the solution without even any explanation. This is not the right way to learn. Please do not be tempted by these links. They will only push you to take shortcuts and / or cheat. And trust me, you will be caught. [Kimba](https://intranet.alxswe.com/rltoken/3nocfYiMMxjbhlMllUqLxg "Kimba") is not a joke and he is here to remind you why you are here.
 
-6. **Simple shell 1.0**
+While we encourage the use of ChatGPT and co in the framework (also, not right away, but at the right step, see framework), it is important to understand that the same rules apply to these AI tools (again, in the context of learning. When you will work it will be completely different, but context matters). At no point does it say that you are allowed to use copilot or ChatGPT to code the solution. If you do, you will get 200% (for a few hours), understand 0, learn 0, and you will be caught for cheating 100%, and then your score for both you and your partner will be 0%. If you don’t get how to use ChatGPT and other AI tools in the context of learning, simply do not use them.
 
-   Implement the env built-in command that prints the current environment. Handle variables and replacements. Handle the `$?` and `$$` variables.
+The reality is that at this point of the program, if you have not cheated before, you have everything you need to complete the project with what you have learned + the page “Everything you need to know to start coding your own shell” [https://intranet.alxswe.com/concepts/64](https://intranet.alxswe.com/rltoken/e6Nw3W01-33JDxlCyKX-Kw "https://intranet.alxswe.com/concepts/64")
 
-7. **Simple shell 0.1.1** (Advanced)
+Actually, you do not even need to open Google once. Focus on your whiteboarding, and everything will fall in place. Remember, at ALX SE you never learn the solution, you learn how to walk toward the solution. You learn to create the tutorial, so if you follow one, you are looking at the solution, you are taking a very serious shortcut that will undermine your learning.
 
-   Write your own `getline` function, using a buffer to read many characters at once and minimize the use of the `read` system call.
+Last thing about the framework. Note that the first thing to do is “0. Read”. Every detail counts. Make sure you read and test everything.
 
-8. **Simple shell 0.2.1** (Advanced)
+The shell project is a group project. That means you will be paired with someone. You already did this with printf, so please apply everything you have learned from the printf experience here. A quick reminder, that a group project is NOT:
 
-   Implement the shell without using `strtok`.
-### Tasks
+* I do nothing and cross fingers for my partner to do everything so I can have a good score
+* I do everything because I am so much better than my partner and I don’t care about them
 
-9. **Simple shell 0.4.1** (Advanced)
+A group project at ALX SE is a project that both of you are responsible for. Everything anyone pushes to Github is the responsibility of both partners. It is not ok to say later “I didn’t cheat it’s my partner I didn’t know they didn’t tell me”.
 
-   Enhance the exit built-in command to handle an optional status argument. The command should be interpreted as "exit" followed by an integer status.
+So you are supposed to work TOGETHER. And you should both understand every single line of code that any of you pushes. Here is a link for you to read about pair programming: [https://intranet.alxswe.com/concepts/121](https://intranet.alxswe.com/rltoken/G52zDoV1f2dmmMl3ngchyw "https://intranet.alxswe.com/concepts/121")
 
-10. **setenv, unsetenv** (Advanced)
+If you plan on not working on the shell project (or if at any point in time you can’t), it is your responsibility to tell both the staff and your partner so that they can find another partner who will work with them asap.
 
-    Implement the setenv and unsetenv built-in commands. The setenv command initializes a new environment variable or modifies an existing one. The unsetenv command removes an environment variable.
+If your group gets caught for plagiarism we will not tolerate “I didn’t do anything, so I should not be flagged”. Yes you should be flagged, because you are someone who doesn’t care about others and thought it was ok to let your partner down and to maybe get the score without doing anything.
 
-11. **cd** (Advanced)
+The shell is an incredibly cool project. GL HF!
 
-    Implement the cd built-in command, which changes the current directory of the shell process. The command should support both absolute and relative directory paths.
+Julien
 
-12. **;** (Advanced)
+Resources
+---------
 
-    Handle the semicolon (;) as a command separator. Commands separated by semicolons should be executed sequentially.
+**Read or watch**:
 
-13. **&& and ||** (Advanced)
+* [Unix shell](https://intranet.alxswe.com/rltoken/f0YU9TAhniMXWlSXtb64Yw "Unix shell")
+* [Thompson shell](https://intranet.alxswe.com/rltoken/7LJOp2qP7qHUcsOK2-F3qA "Thompson shell")
+* [Ken Thompson](https://intranet.alxswe.com/rltoken/wTSu31ZP1f7fFTJFgRQC7w "Ken Thompson")
+* **Everything you need to know to start coding your own shell** concept page
 
-    Handle the logical operators && and ||. The commands separated by these operators
+**man or help**:
 
+* `sh` (_Run `sh` as well_)
 
-## Authors
-- Gideon Bature
-- Wright OGUNDIYA
+Learning Objectives
+-------------------
 
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+At the end of this project, you are expected to be able to [explain to anyone](https://intranet.alxswe.com/rltoken/9LNz86CtOTos9oL3zxIO3A "explain to anyone"), **without the help of Google**:
 
+### General
 
+* Who designed and implemented the original Unix operating system
+* Who wrote the first version of the UNIX shell
+* Who invented the B programming language (the direct predecessor to the C programming language)
+* Who is Ken Thompson
+* How does a shell work
+* What is a pid and a ppid
+* How to manipulate the environment of the current process
+* What is the difference between a function and a system call
+* How to create processes
+* What are the three prototypes of `main`
+* How does the shell use the `PATH` to find the programs
+* How to execute another program with the `execve` system call
+* How to suspend the execution of a process until one of its children terminates
+* What is `EOF` / “end-of-file”?
+
+### Copyright - Plagiarism
+
+* You are tasked to come up with solutions for the tasks below yourself to meet with the above learning objectives.
+* You will not be able to meet the objectives of this or any following project by copying and pasting someone else’s work.
+* You are not allowed to publish any content of this project.
+* Any form of plagiarism is strictly forbidden and will result in removal from the program.
+
+Requirements
+------------
+
+### General
+
+* Allowed editors: `vi`, `vim`, `emacs`
+* All your files will be compiled on Ubuntu 20.04 LTS using `gcc`, using the options `-Wall -Werror -Wextra -pedantic -std=gnu89`
+* All your files should end with a new line
+* A `README.md` file, at the root of the folder of the project is mandatory
+* Your code should use the `Betty` style. It will be checked using [betty-style.pl](https://github.com/alx-tools/Betty/blob/master/betty-style.pl "betty-style.pl") and [betty-doc.pl](https://github.com/alx-tools/Betty/blob/master/betty-doc.pl "betty-doc.pl")
+* Your shell should not have any memory leaks
+* No more than 5 functions per file
+* All your header files should be include guarded
+* Use system calls only when you need to ([why?](https://intranet.alxswe.com/rltoken/EU7B1PTSy14INnZEShpobQ "why?"))
+* Write a `README` with the description of your project
+* You should have an `AUTHORS` file at the root of your repository, listing all individuals having contributed content to the repository. Format, see [Docker](https://intranet.alxswe.com/rltoken/UL8J3kgl7HBK_Z9iBL3JFg "Docker")
+
+### GitHub
+
+*_There should be one project repository per group. If you and your partner have a repository with the same name in both your accounts, you risk a 0% score. Add your partner as a collaborator. *_
+
+More Info
+---------
+
+### Output
+
+* Unless specified otherwise, your program **must have the exact same output** as `sh` (`/bin/sh`) as well as the exact same error output.
+* The only difference is when you print an error, the name of the program must be equivalent to your `argv[0]` (See below)
+
+Example of error with `sh`:
+
+    $ echo "qwerty" | /bin/sh
+    /bin/sh: 1: qwerty: not found
+    $ echo "qwerty" | /bin/../bin/sh
+    /bin/../bin/sh: 1: qwerty: not found
+    $
+    
+
+Same error with your program `hsh`:
+
+    $ echo "qwerty" | ./hsh
+    ./hsh: 1: qwerty: not found
+    $ echo "qwerty" | ./././hsh
+    ./././hsh: 1: qwerty: not found
+    $
+    
+    
+
+### List of allowed functions and system calls
+
+* `access` (man 2 access)
+* `chdir` (man 2 chdir)
+* `close` (man 2 close)
+* `closedir` (man 3 closedir)
+* `execve` (man 2 execve)
+* `exit` (man 3 exit)
+* `_exit` (man 2 _exit)
+* `fflush` (man 3 fflush)
+* `fork` (man 2 fork)
+* `free` (man 3 free)
+* `getcwd` (man 3 getcwd)
+* `getline` (man 3 getline)
+* `getpid` (man 2 getpid)
+* `isatty` (man 3 isatty)
+* `kill` (man 2 kill)
+* `malloc` (man 3 malloc)
+* `open` (man 2 open)
+* `opendir` (man 3 opendir)
+* `perror` (man 3 perror)
+* `read` (man 2 read)
+* `readdir` (man 3 readdir)
+* `signal` (man 2 signal)
+* `stat` (__xstat) (man 2 stat)
+* `lstat` (__lxstat) (man 2 lstat)
+* `fstat` (__fxstat) (man 2 fstat)
+* `strtok` (man 3 strtok)
+* `wait` (man 2 wait)
+* `waitpid` (man 2 waitpid)
+* `wait3` (man 2 wait3)
+* `wait4` (man 2 wait4)
+* `write` (man 2 write)
+
+### Compilation
+
+Your shell will be compiled this way:
+
+    gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
+    
+
+### Testing
+
+Your shell should work like this in interactive mode:
+
+    $ ./hsh
+    ($) /bin/ls
+    hsh main.c shell.c
+    ($)
+    ($) exit
+    $
+    
+
+But also in non-interactive mode:
+
+    $ echo "/bin/ls" | ./hsh
+    hsh main.c shell.c test_ls_2
+    $
+    $ cat test_ls_2
+    /bin/ls
+    /bin/ls
+    $
+    $ cat test_ls_2 | ./hsh
+    hsh main.c shell.c test_ls_2
+    hsh main.c shell.c test_ls_2
+    $
+    
+
+### Checks
+
+The Checker will be released at the end of the project (1-2 days before the deadline). We **strongly** encourage the entire class to work together to create a suite of checks covering both regular tests and edge cases for each task. See task `8. Test suite`.
+
+Tasks
+-----
+
+### 0\. Betty would be proud
+
+mandatory
+
+Write a beautiful code that passes the Betty checks
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "0. Betty would be proud"
+
+Get a sandbox
+
+### 1\. Simple shell 0.1
+
+mandatory
+
+Write a UNIX command line interpreter.
+
+* Usage: `simple_shell`
+
+Your Shell should:
+
+* Display a prompt and wait for the user to type a command. A command line always ends with a new line.
+* The prompt is displayed again each time a command has been executed.
+* The command lines are simple, no semicolons, no pipes, no redirections or any other advanced features.
+* The command lines are made only of one word. No arguments will be passed to programs.
+* If an executable cannot be found, print an error message and display the prompt again.
+* Handle errors.
+* You have to handle the “end of file” condition (`Ctrl+D`)
+
+You don’t have to:
+
+* use the `PATH`
+* implement built-ins
+* handle special characters : `"`, `'`, `` ` ``, `\`, `*`, `&`, `#`
+* be able to move the cursor
+* handle commands with arguments
+
+_`execve` will be the core part of your Shell, don’t forget to pass the environ to it…_
+
+    julien@ubuntu:~/shell$ ./shell 
+    #cisfun$ ls
+    ./shell: No such file or directory
+    #cisfun$ /bin/ls
+    barbie_j       env-main.c  exec.c  fork.c  pid.c  ppid.c    prompt   prompt.c  shell.c  stat.c         wait
+    env-environ.c  exec    fork    mypid   ppid   printenv  promptc  shell     stat test_scripting.sh  wait.c
+    #cisfun$ /bin/ls -l
+    ./shell: No such file or directory
+    #cisfun$ ^[[D^[[D^[[D
+    ./shell: No such file or directory
+    #cisfun$ ^[[C^[[C^[[C^[[C
+    ./shell: No such file or directory
+    #cisfun$ exit
+    ./shell: No such file or directory
+    #cisfun$ ^C
+    julien@ubuntu:~/shell$ echo "/bin/ls" | ./shell
+    barbie_j       env-main.c  exec.c  fork.c  pid.c  ppid.c    prompt   prompt.c  shell.c  stat.c         wait
+    env-environ.c  exec    fork    mypid   ppid   printenv  promptc  shell     stat test_scripting.sh  wait.c
+    #cisfun$ julien@ubuntu:~/shell$
+    
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "1. Simple shell 0.1"
+
+Get a sandbox
+
+### 2\. Simple shell 0.2
+
+mandatory
+
+Simple shell 0.1 +
+
+* Handle command lines with arguments
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "2. Simple shell 0.2"
+
+Get a sandbox
+
+### 3\. Simple shell 0.3
+
+mandatory
+
+Simple shell 0.2 +
+
+* Handle the `PATH`
+* `fork` must not be called if the command doesn’t exist
+
+    julien@ubuntu:~/shell$ ./shell_0.3
+    :) /bin/ls
+    barbie_j       env-main.c  exec.c  fork.c  pid.c  ppid.c    prompt   prompt.c  shell_0.3  stat    test_scripting.sh  wait.c
+    env-environ.c  exec    fork    mypid   ppid   printenv  promptc  shell     shell.c    stat.c  wait
+    :) ls
+    barbie_j       env-main.c  exec.c  fork.c  pid.c  ppid.c    prompt   prompt.c  shell_0.3  stat    test_scripting.sh  wait.c
+    env-environ.c  exec    fork    mypid   ppid   printenv  promptc  shell     shell.c    stat.c  wait
+    :) ls -l /tmp 
+    total 20
+    -rw------- 1 julien julien    0 Dec  5 12:09 config-err-aAMZrR
+    drwx------ 3 root   root   4096 Dec  5 12:09 systemd-private-062a0eca7f2a44349733e78cb4abdff4-colord.service-V7DUzr
+    drwx------ 3 root   root   4096 Dec  5 12:09 systemd-private-062a0eca7f2a44349733e78cb4abdff4-rtkit-daemon.service-ANGvoV
+    drwx------ 3 root   root   4096 Dec  5 12:07 systemd-private-062a0eca7f2a44349733e78cb4abdff4-systemd-timesyncd.service-CdXUtH
+    -rw-rw-r-- 1 julien julien    0 Dec  5 12:09 unity_support_test.0
+    :) ^C
+    julien@ubuntu:~/shell$ 
+    
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "3. Simple shell 0.3"
+
+Get a sandbox
+
+### 4\. Simple shell 0.4
+
+mandatory
+
+Simple shell 0.3 +
+
+* Implement the `exit` built-in, that exits the shell
+* Usage: `exit`
+* You don’t have to handle any argument to the built-in `exit`
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "4. Simple shell 0.4"
+
+Get a sandbox
+
+### 5\. Simple shell 1.0
+
+mandatory
+
+Simple shell 0.4 +
+
+* Implement the `env` **built-in**, that prints the current environment
+
+    julien@ubuntu:~/shell$ ./simple_shell
+    $ env
+    USER=julien
+    LANGUAGE=en_US
+    SESSION=ubuntu
+    COMPIZ_CONFIG_PROFILE=ubuntu
+    SHLVL=1
+    HOME=/home/julien
+    C_IS=Fun_:)
+    DESKTOP_SESSION=ubuntu
+    LOGNAME=julien
+    TERM=xterm-256color
+    PATH=/home/julien/bin:/home/julien/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+    DISPLAY=:0
+    $ exit
+    julien@ubuntu:~/shell$ 
+    
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "5. Simple shell 1.0"
+
+Get a sandbox
+
+### 6\. Simple shell 0.1.1
+
+#advanced
+
+Simple shell 0.1 +
+
+* Write your own `getline` function
+* Use a buffer to read many chars at once and call the least possible the `read` system call
+* You will need to use `static` variables
+* You are not allowed to use `getline`
+
+You don’t have to:
+
+* be able to move the cursor
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "6. Simple shell 0.1.1"
+
+Get a sandbox
+
+### 7\. Simple shell 0.2.1
+
+#advanced
+
+Simple shell 0.2 +
+
+* You are not allowed to use `strtok`
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "7. Simple shell 0.2.1"
+
+Get a sandbox
+
+### 8\. Simple shell 0.4.1
+
+#advanced
+
+Simple shell 0.4 +
+
+* handle arguments for the built-in `exit`
+* Usage: `exit status`, where `status` is an integer used to exit the shell
+
+    julien@ubuntu:~/shell$ ./shell_0.4.1
+    $ exit 98
+    julien@ubuntu:~/shell$ echo $?
+    98
+    julien@ubuntu:~/shell$ 
+    
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "8. Simple shell 0.4.1"
+
+Get a sandbox
+
+### 9\. setenv, unsetenv
+
+#advanced
+
+Simple shell 1.0 +
+
+Implement the `setenv` and `unsetenv` builtin commands
+
+* `setenv`
+    * Initialize a new environment variable, or modify an existing one
+    * Command syntax: `setenv VARIABLE VALUE`
+    * Should print something on stderr on failure
+* `unsetenv`
+    * Remove an environment variable
+    * Command syntax: `unsetenv VARIABLE`
+    * Should print something on stderr on failure
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "9. setenv, unsetenv"
+
+Get a sandbox
+
+### 10\. cd
+
+#advanced
+
+Simple shell 1.0 +
+
+Implement the builtin command `cd`:
+
+* Changes the current directory of the process.
+* Command syntax: `cd [DIRECTORY]`
+* If no argument is given to `cd` the command must be interpreted like `cd $HOME`
+* You have to handle the command `cd -`
+* You have to update the environment variable `PWD` when you change directory
+
+`man chdir`, `man getcwd`
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "10. cd"
+
+Get a sandbox
+
+### 11\. ;
+
+#advanced
+
+Simple shell 1.0 +
+
+* Handle the commands separator `;`
+
+    alex@~$ ls /var ; ls /var
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    alex@~$ ls /hbtn ; ls /var
+    ls: cannot access /hbtn: No such file or directory
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    alex@~$ ls /var ; ls /hbtn
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    ls: cannot access /hbtn: No such file or directory
+    alex@~$ ls /var ; ls /hbtn ; ls /var ; ls /var
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    ls: cannot access /hbtn: No such file or directory
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    alex@~$
+    
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "11. ;"
+
+Get a sandbox
+
+### 12\. && and ||
+
+#advanced
+
+Simple shell 1.0 +
+
+* Handle the `&&` and `||` shell logical operators
+
+    alex@~$ ls /var && ls /var
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    alex@~$ ls /hbtn && ls /var
+    ls: cannot access /hbtn: No such file or directory
+    alex@~$ ls /var && ls /var && ls /var && ls /hbtn
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    ls: cannot access /hbtn: No such file or directory
+    alex@~$ ls /var && ls /var && ls /var && ls /hbtn && ls /hbtn
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    ls: cannot access /hbtn: No such file or directory
+    alex@~$
+    alex@~$ ls /var || ls /var
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    alex@~$ ls /hbtn || ls /var
+    ls: cannot access /hbtn: No such file or directory
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    alex@~$ ls /hbtn || ls /hbtn || ls /hbtn || ls /var
+    ls: cannot access /hbtn: No such file or directory
+    ls: cannot access /hbtn: No such file or directory
+    ls: cannot access /hbtn: No such file or directory
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    alex@~$ ls /hbtn || ls /hbtn || ls /hbtn || ls /var || ls /var
+    ls: cannot access /hbtn: No such file or directory
+    ls: cannot access /hbtn: No such file or directory
+    ls: cannot access /hbtn: No such file or directory
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
+    alex@~$
+    
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "12. && and ||"
+
+Get a sandbox
+
+### 13\. alias
+
+#advanced
+
+Simple shell 1.0 +
+
+* Implement the `alias` builtin command
+* Usage: `alias [name[='value'] ...]`
+    * `alias`: Prints a list of all aliases, one per line, in the form `name='value'`
+    * `alias name [name2 ...]`: Prints the aliases `name`, `name2`, etc 1 per line, in the form `name='value'`
+    * `alias name='value' [...]`: Defines an alias for each `name` whose `value` is given. If `name` is already an alias, replaces its value with `value`
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "13. alias"
+
+Get a sandbox
+
+### 14\. Variables
+
+#advanced
+
+Simple shell 1.0 +
+
+* Handle variables replacement
+* Handle the `$?` variable
+* Handle the `$$` variable
+
+    julien@ubuntu:~/shell$ ./hsh
+    $ ls /var
+    backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  snap  spool  tmp
+    $ echo $?
+    0
+    $ echo $$
+    5104
+    $ echo $PATH
+    /home/julien/bin:/home/julien/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+    $ exit 
+    julien@ubuntu:~/shell$ 
+    
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "14. Variables"
+
+Get a sandbox
+
+### 15\. Comments
+
+#advanced
+
+Simple shell 1.0 +
+
+* Handle comments (`#`)
+
+    julien@ubuntu:~/shell$ sh
+    $ echo $$ # ls -la
+    5114
+    $ exit
+    julien@ubuntu:~/shell$ 
+    
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "15. Comments"
+
+Get a sandbox
+
+### 16\. File as input
+
+#advanced
+
+Simple shell 1.0 +
+
+* Usage: `simple_shell [filename]`
+* Your shell can take a file as a command line argument
+* The file contains all the commands that your shell should run before exiting
+* The file should contain one command per line
+* In this mode, the shell should not print a prompt and should not read from `stdin`
+
+**Repo:**
+
+* GitHub repository: `simple_shell`
+
+Done?! Help
+
+×
+
+#### Learners who are done with "16. File as input"
+
+Get a sandbox
+
+×
+
+#### Recommended Sandbox
+
+Running only
+
+### 1 image(1/2 Sandboxes spawned)
+
+### Ubuntu 20.04Asleep
+
+Basic Ubuntu 20.04, with vim, emacs, curl, wget and all needed for Foundations
+
+WakeDestroy
+
+Copyright © 2023 ALX, All rights reserved.
+
+×
+
+#### Markdown Guide
+
+#### Emphasis
+
+****bold****
+*_italics_*
+~~~strikethrough~~~
+
+#### Headers
+
+\# Big header
+\## Medium header
+\### Small header
+\#### Tiny header
+
+#### Lists
+
+\* Generic list item
+\* Generic list item
+\* Generic list item
+
+1\. Numbered list item
+2\. Numbered list item
+3\. Numbered list item
+
+#### Links
+
+\[Text to display\](http://www.example.com)
+
+#### Quotes
+
+\> This is a quote.
+\> It can span multiple lines!
+
+#### Images
+
+CSS style available: `width, height, opacity`
+
+!\[\](http://www.example.com/image.jpg)
+!\[\](http://www.example.com/image.jpg | width: 200px)
+!\[\](http://www.example.com/image.jpg | height: 124px | width: 80px | opacity: 0.6)
+
+#### Tables
+
+| Column 1 | Column 2 | Column 3 |
+| \-\-\-\-\-\-\-\- | \-\-\-\-\-\-\-\- | \-\-\-\-\-\-\-\- |
+| John     | Doe      | Male     |
+| Mary     | Smith    | Female   |
+
+_Or without aligning the columns..._
+
+| Column 1 | Column 2 | Column 3 |
+| \-\-\-\-\-\-\-\- | \-\-\-\-\-\-\-\- | \-\-\-\-\-\-\-\- |
+| John | Doe | Male |
+| Mary | Smith | Female |
+
+#### Displaying code
+
+\`var example = "hello!";\`
+
+_Or spanning multiple lines..._
+
+```
+var example = "hello!";
+alert(example);
+```
