@@ -83,13 +83,13 @@ void _strtok(char **argv)
  * Return: PATH or NULL
 */
 
-char *_getenv(const char *name)
+char *getenv_member(const char *name)
 {
 	int i = 0;
 
 	while (environ[i])
 	{
-		if (strstr(environ[i], "PATH=") == environ[i])
+		if (strstr(environ[i], name) == environ[i])
 		{
 			return (environ[i]);
 		}
@@ -131,15 +131,15 @@ char *_strdup(const char *str)
  *
  * Return: void
 */
-char *check_cmd(char *argv)
+char *check_cmd(char *cmd)
 {
 	int dir_len, cmd_len;
-	char *path = _getenv("PATH");
-
+	char *path = getenv("PATH");
+	
 	if (path == NULL)
 		return (NULL);
 
-	char *path_dup = _strdup(path);
+	char *path_dup = strdup(path);
 	char *dir = strtok(path_dup, ":");
 
 	while (dir)
@@ -166,12 +166,16 @@ char *check_cmd(char *argv)
 			free(path_dup);
 			return (full_path);
 		}
+
 		free(full_path);
 		dir = strtok(NULL, ":");
 	}
+
+	free(dir);
 	free(path_dup);
 	return (NULL);
 }
+
 
 /**
  * clean_up - frees the lineptr upon exit
