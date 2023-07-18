@@ -1,4 +1,5 @@
 #include "main.h"
+int main(int argc, char **argv, char **env);
 
 /**
  * main - Entrance to program
@@ -76,15 +77,39 @@ void _strtok(char **argv)
 }
 
 /**
+ * _getenv - check for PATH in environ
+ * @name: name of the environment variable
+ *
+ * Return: PATH or NULL
+*/
+
+char *_getenv(const char *name)
+{
+	int i = 0;
+
+	while (environ[i])
+	{
+		if (strstr(environ[i], "PATH=") == environ[i])
+		{
+			return (environ[i]);
+		}
+		i++;
+	}
+	return (NULL);
+}
+
+/**
  * check_cmd - check cmd whether inbuilt or executable
  * @argv: argument vector (tokens)
  *
- * Return: void 
+ * Return: void
 */
 void check_cmd(char **argv)
 {
 
 }
+
+
 
 /**
  * clean_up - frees the lineptr upon exit
@@ -100,7 +125,7 @@ void clean_up(void)
 
 /**
  * sig_int_handler - handles the exit signal
- *
+ * @sig: the signal passed
  * Return: void
 */
 

@@ -7,11 +7,14 @@
 #include <string.h>
 #include <signal.h>
 
+extern char **environ;
 char *lineptr = NULL;
+
 
 char *_getline(void);
 void _strtok(char **argv);
 void check_cmd(char **argv);
+char *_getenv(const char *name);
 /** char *strtok(char *str, char *sep); */
 
 
