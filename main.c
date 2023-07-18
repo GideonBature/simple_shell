@@ -109,18 +109,19 @@ char *_strdup(const char *str)
 {
 	int str_len;
 	char *new_str;
-	
+
 	str_len = strlen(str) + 1;
 
 	new_str = malloc(str_len * sizeof(char));
-	
+
 	if (new_str == NULL)
 	{
 		return (NULL);
 	}
 
-    strcpy(new_str, str);
-    return (new_str);
+	strcpy(new_str, str);
+
+	return (new_str);
 }
 
 
