@@ -24,8 +24,6 @@ int main(int argc, char **argv, char **env)
 		/** tokenize here */
 		_strtok(argv);
 
-		printf("%s", cmd);
-
 		if (strstr(cmd, "env") == cmd)
 		{
 			while (*env != NULL)
@@ -33,6 +31,12 @@ int main(int argc, char **argv, char **env)
 				printf("%s\n", *env);
 				*env++;
 			}
+		} 
+		else if (strstr(cmd, "exit") == cmd)
+		{
+			free(lineptr);
+			lineptr = NULL;
+			return (0);
 		}
 
 		free(lineptr);
