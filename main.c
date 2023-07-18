@@ -10,34 +10,57 @@
  */
 int main(int argc, char **argv, char **env)
 {
-	char *_lineptr = NULL;
+	atexit(clean_up);
+	signal(SIGINT, sig_int_handler);
 
 	while (1)
 	{
 		printf("$ ");
-		_lineptr = _getline();
+		_getline();
 		/** tokenize here */
-		_strtok(_lineptr);
-		free(_lineptr);
+		_strtok(argv);
+
+		free(lineptr);
+		lineptr = NULL;
 	}
 
 	return (0);
 }
 
 /**
+ * clean_up - frees the lineptr upon exit
+ *
+ * Return: void
+*/
+void clean_up(void)
+{
+	free(lineptr);
+	if (isatty(fileno(stdin)))
+		printf("\n");
+}
+
+void sig_int_handler(int sig)
+{
+	exit(0);
+}
+
+/**
  * _strtok - Tokenize a string
  * @_lineptr: Line pointer from getline
  */
-void _strtok(char *_lineptr)
+void _strtok(char **argv)
 {
-	char *cmd = strtok(_lineptr, " ");
 	int i = 0;
+	char *cmd = strtok(lineptr, " ");
 
 	while (cmd)
 	{
-		printf("%s\n", cmd);
+		argv[i] = cmd;
+		/* printf("%s\n", cmd); */
 		cmd = strtok(NULL, " ");
+		i++;
 	}
+	argv[i] = NULL;
 }
 
 /**
@@ -48,15 +71,17 @@ void _strtok(char *_lineptr)
 char *_getline(void)
 {
 	size_t numbytes = 0, newnumbytes;
-	char *lineptr = NULL;
 	ssize_t linelen;
 
 	linelen = getline(&lineptr, &numbytes, stdin);
 
 	if (linelen == -1)
 		exit(1);
+
 	newnumbytes = strcspn(lineptr, "\n");
+
 	if (lineptr[newnumbytes] == '\n')
 		lineptr[newnumbytes] = '\0';
+
 	return (lineptr);
 }

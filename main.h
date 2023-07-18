@@ -4,7 +4,14 @@
 #include <stdio.h>
 #include <unistd.h>
 #include  <string.h>
+#include  <signal.h>
+
+void clean_up(void);
+void sig_int_handler(int sig);
+
 char *_getline(void);
-void _strtok(char *_lineptr);
+void _strtok(char **argv);
 /** char *strtok(char *str, char *sep); */
+
+char *lineptr = NULL;
 #endif
