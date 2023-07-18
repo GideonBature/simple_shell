@@ -106,6 +106,7 @@ char *_getenv(const char *name)
 */
 char *check_cmd(char *argv)
 {
+	int dir_len, cmd_len;
 	char *path = _getenv("PATH");
 
 	if (path == NULL)
@@ -116,20 +117,34 @@ char *check_cmd(char *argv)
 
 	while (dir)
 	{
-		char full_path[1024];
+		dir_len = strlen(dir);
+		cmd_len = strlen(cmd);
+		char *full_path;
+
+		full_path = malloc((dir_len + cmd_len + 2) * sizeof(char));
+
+		if (full_path == NULL)
+		{
+			free(full_path);
+			free(path_dup);
+			return (NULL);
+		}
+
+		strcpy(full_path, dir);
+		strcat(full_path, "/");
+		strcat(full_path, cmd);
 
 		if (access(full_path, X_OK) == 0)
 		{
 			free(path_dup);
-			return (strdup(full_path));
+			return (full_path);
 		}
+		free(full_path);
 		dir = strtok(NULL, ":");
 	}
 	free(path_dup);
 	return (NULL);
 }
-
-
 
 /**
  * clean_up - frees the lineptr upon exit

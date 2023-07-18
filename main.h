@@ -6,6 +6,8 @@
 #include <unistd.h>
 #include <string.h>
 #include <signal.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 extern char **environ;
 char *lineptr = NULL;
