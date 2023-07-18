@@ -15,7 +15,9 @@ int main(int argc, char **argv, char **env)
 
 	while (1)
 	{
-		printf("$ ");
+		if (isatty(fileno(stdin)))
+			printf("$ ");
+
 		_getline();
 		/** tokenize here */
 		_strtok(argv);
@@ -27,41 +29,7 @@ int main(int argc, char **argv, char **env)
 	return (0);
 }
 
-/**
- * clean_up - frees the lineptr upon exit
- *
- * Return: void
-*/
-void clean_up(void)
-{
-	free(lineptr);
-	if (isatty(fileno(stdin)))
-		printf("\n");
-}
 
-void sig_int_handler(int sig)
-{
-	exit(0);
-}
-
-/**
- * _strtok - Tokenize a string
- * @_lineptr: Line pointer from getline
- */
-void _strtok(char **argv)
-{
-	int i = 0;
-	char *cmd = strtok(lineptr, " ");
-
-	while (cmd)
-	{
-		argv[i] = cmd;
-		/* printf("%s\n", cmd); */
-		cmd = strtok(NULL, " ");
-		i++;
-	}
-	argv[i] = NULL;
-}
 
 /**
  * _getline - Get line conditions
@@ -84,4 +52,59 @@ char *_getline(void)
 		lineptr[newnumbytes] = '\0';
 
 	return (lineptr);
+}
+
+/**
+ * _strtok - Tokenize a string
+ * @argv: argument vector from _getline
+ *
+ * Return: void
+ */
+void _strtok(char **argv)
+{
+	int i = 0;
+	char *cmd = strtok(lineptr, " ");
+
+	while (cmd)
+	{
+		argv[i] = cmd;
+		/* printf("%s\n", cmd); */
+		cmd = strtok(NULL, " ");
+		i++;
+	}
+	argv[i] = NULL;
+}
+
+/**
+ * check_cmd - check cmd whether inbuilt or executable
+ * @argv: argument vector (tokens)
+ *
+ * Return: void 
+*/
+void check_cmd(char **argv)
+{
+
+}
+
+/**
+ * clean_up - frees the lineptr upon exit
+ *
+ * Return: void
+*/
+void clean_up(void)
+{
+	free(lineptr);
+	if (isatty(fileno(stdin)))
+		printf("\n");
+}
+
+/**
+ * sig_int_handler - handles the exit signal
+ *
+ * Return: void
+*/
+
+void sig_int_handler(int sig)
+{
+	exit(0);
 }
