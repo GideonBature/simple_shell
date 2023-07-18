@@ -104,9 +104,29 @@ char *_getenv(const char *name)
  *
  * Return: void
 */
-void check_cmd(char **argv)
+char *check_cmd(char *argv)
 {
+	char *path = _getenv("PATH");
 
+	if (path == NULL)
+		return (NULL);
+
+	char *path_dup = strdup(path);
+	char *dir = strtok(path_dup, ":");
+
+	while (dir)
+	{
+		char full_path[1024];
+
+		if (access(full_path, X_OK) == 0)
+		{
+			free(path_dup);
+			return (strdup(full_path));
+		}
+		dir = strtok(NULL, ":");
+	}
+	free(path_dup);
+	return (NULL);
 }
 
 
