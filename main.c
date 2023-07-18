@@ -99,6 +99,32 @@ char *_getenv(const char *name)
 }
 
 /**
+ * _strdup - duplicates string along their memory size
+ * @str: the string to be dublicated
+ *
+ * Return: string or NULL
+*/
+
+char *_strdup(const char *str)
+{
+	int str_len;
+	char *new_str;
+	
+	str_len = strlen(str) + 1;
+
+	new_str = malloc(str_len * sizeof(char));
+	
+	if (new_str == NULL)
+	{
+		return (NULL);
+	}
+
+    strcpy(new_str, str);
+    return (new_str);
+}
+
+
+/**
  * check_cmd - check cmd whether inbuilt or executable
  * @argv: argument vector (tokens)
  *
@@ -112,7 +138,7 @@ char *check_cmd(char *argv)
 	if (path == NULL)
 		return (NULL);
 
-	char *path_dup = strdup(path);
+	char *path_dup = _strdup(path);
 	char *dir = strtok(path_dup, ":");
 
 	while (dir)
