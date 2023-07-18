@@ -61,7 +61,7 @@ char *_getline(void)
 	linelen = getline(&lineptr, &numbytes, stdin);
 
 	if (linelen == -1)
-		exit(1);
+		exit(0);
 
 	newnumbytes = strcspn(lineptr, "\n");
 
@@ -199,9 +199,6 @@ char *check_cmd(char *cmd)
 	free(path_dup);
 	return (NULL);
 }
-
-
-
 
 /**
  * clean_up - frees the lineptr upon exit
