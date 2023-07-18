@@ -14,7 +14,7 @@ char *lineptr = NULL;
 char *_getline(void);
 void _strtok(char **argv);
 char *_getenv(const char *name);
-char *check_cmd(char **argv);
+char *check_cmd(char *argv);
 /** char *strtok(char *str, char *sep); */
 
 
