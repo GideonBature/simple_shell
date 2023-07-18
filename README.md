@@ -1,24 +1,5 @@
 # 0x16. C - Simple Shell
 
-<div react-class="tags/Tags"
-react-props="{&quot;tags&quot;:[{&quot;id&quot;:7,&quot;value&quot;:&quot;C&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:16,&quot;value&quot;:&quot;Group project&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;},{&quot;id&quot;:20,&quot;value&quot;:&quot;Syscall&quot;,&quot;author_id&quot;:null,&quot;created_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;,&quot;updated_at&quot;:&quot;2022-06-16T01:59:38.000Z&quot;}]}"
-react-cache-id="tags/Tags-0">
-
-<div class="align-items-center d-flex flex-wrap gap-3 my-2">
-
-<span class="label label-primary" style="font-size: 14px;">C</span><span
-class="label label-primary" style="font-size: 14px;">Group
-project</span><span class="label label-primary"
-style="font-size: 14px;">Syscall</span>
-
-</div>
-
-</div>
-
-<div react-class="projects/ProjectMetadata"
-react-props="{&quot;metadata&quot;:{&quot;author&quot;:&quot;Julien Barbier&quot;,&quot;weight&quot;:10,&quot;correction&quot;:{&quot;released&quot;:false,&quot;auto_correction_available_at&quot;:&quot;2023-07-26T01:12:00.000+01:00&quot;,&quot;requires_auto_correction&quot;:true,&quot;requires_manual_correction&quot;:false},&quot;bpi&quot;:{&quot;current&quot;:true,&quot;started&quot;:false,&quot;in_second_deadline&quot;:false,&quot;starts_at&quot;:&quot;2023-07-12T06:00:00.000+01:00&quot;,&quot;ends_at&quot;:&quot;2023-07-27T06:00:00.000+01:00&quot;,&quot;second_deadline_at&quot;:&quot;2023-07-29T06:00:00.000+01:00&quot;},&quot;team&quot;:{&quot;in_team_of&quot;:2,&quot;members&quot;:[&quot;Gideon Bature&quot;,&quot;Wright OGUNDIYA&quot;]}}}"
-react-cache-id="projects/ProjectMetadata-0">
-
 -    By: Julien Barbier
 -    Weight: 10
 -    Project to be done in teams of 2 people (your team: Gideon Bature,
@@ -37,21 +18,6 @@ react-cache-id="projects/ProjectMetadata-0">
     class="datetime">Jul 26, 2023 1:12 AM</span></span>
 -    An auto review will be launched at the deadline
 
-</div>
-
-<div id="project_id" style="display: none" project-id="235">
-
-</div>
-
-<div class="panel panel-default">
-
-<div class="panel-heading">
-
-### Concepts
-
-</div>
-
-<div class="panel-body">
 
 *For this project, we expect you to look at these concepts:*
 
@@ -59,13 +25,6 @@ react-cache-id="projects/ProjectMetadata-0">
     shell](https://intranet.alxswe.com/concepts/64)
 -   [Approaching a Project](https://intranet.alxswe.com/concepts/350)
 
-</div>
-
-</div>
-
-<div id="project-description" class="panel panel-default">
-
-<div class="panel-body">
 
 ## Background Context
 
@@ -383,28 +342,6 @@ edge cases for each task. See task `8. Test suite`.
 
 ## Tasks
 
-<div id="task-num-0" data-role="task1033" position="1">
-
-<div id="task-1033" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
-### 0. Betty would be proud
-
-<div>
-
-<span class="label label-info"> mandatory </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
-
 Write a beautiful code that passes the Betty checks
 
 </div>
@@ -417,108 +354,13 @@ Write a beautiful code that passes the Betty checks
 
 -   GitHub repository: `simple_shell`
 
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
-
-<div id="task-1033-users-done-modal" class="modal fade users-done-modal"
-task-id="1033" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "0. Betty would be proud"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-1" data-role="task1034" position="2">
-
-<div id="task-1034" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 1. Simple shell 0.1
-
-<div>
-
-<span class="label label-info"> mandatory </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Write a UNIX command line interpreter.
 
@@ -569,235 +411,34 @@ environ to it…*
     env-environ.c  exec    fork    mypid   ppid   printenv  promptc  shell     stat test_scripting.sh  wait.c
     #cisfun$ julien@ubuntu:~/shell$
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
-
 **Repo:**
 
 -   GitHub repository: `simple_shell`
 
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
 
-<div id="task-1034-users-done-modal" class="modal fade users-done-modal"
-task-id="1034" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "1. Simple shell 0.1"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-2" data-role="task1036" position="3">
-
-<div id="task-1036" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 2. Simple shell 0.2
-
-<div>
-
-<span class="label label-info"> mandatory </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Simple shell 0.1 +
 
 -   Handle command lines with arguments
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
-
 **Repo:**
 
 -   GitHub repository: `simple_shell`
 
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
-
-<div id="task-1036-users-done-modal" class="modal fade users-done-modal"
-task-id="1036" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "2. Simple shell 0.2"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-3" data-role="task1038" position="4">
-
-<div id="task-1038" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 3. Simple shell 0.3
-
-<div>
-
-<span class="label label-info"> mandatory </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Simple shell 0.2 +
 
@@ -823,118 +464,18 @@ Simple shell 0.2 +
     :) ^C
     julien@ubuntu:~/shell$ 
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
 
 **Repo:**
 
 -   GitHub repository: `simple_shell`
 
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
-
-<div id="task-1038-users-done-modal" class="modal fade users-done-modal"
-task-id="1038" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "3. Simple shell 0.3"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-4" data-role="task1039" position="5">
-
-<div id="task-1039" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 4. Simple shell 0.4
-
-<div>
-
-<span class="label label-info"> mandatory </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Simple shell 0.3 +
 
@@ -942,118 +483,18 @@ Simple shell 0.3 +
 -   Usage: `exit`
 -   You don’t have to handle any argument to the built-in `exit`
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
 
 **Repo:**
 
 -   GitHub repository: `simple_shell`
 
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
-
-<div id="task-1039-users-done-modal" class="modal fade users-done-modal"
-task-id="1039" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "4. Simple shell 0.4"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-5" data-role="task1042" position="6">
-
-<div id="task-1042" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 5. Simple shell 1.0
-
-<div>
-
-<span class="label label-info"> mandatory </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Simple shell 0.4 +
 
@@ -1079,118 +520,19 @@ Simple shell 0.4 +
     $ exit
     julien@ubuntu:~/shell$ 
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
 
 **Repo:**
 
 -   GitHub repository: `simple_shell`
 
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
 
-<div id="task-1042-users-done-modal" class="modal fade users-done-modal"
-task-id="1042" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "5. Simple shell 1.0"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-6" data-role="task1035" position="9">
-
-<div id="task-1035" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 6. Simple shell 0.1.1
-
-<div>
-
-<span class="label label-info"> \#advanced </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Simple shell 0.1 +
 
@@ -1204,235 +546,29 @@ You don’t have to:
 
 -   be able to move the cursor
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
-
-**Repo:**
-
--   GitHub repository: `simple_shell`
-
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
-
-<div id="task-1035-users-done-modal" class="modal fade users-done-modal"
-task-id="1035" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "6. Simple shell 0.1.1"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-7" data-role="task1037" position="10">
-
-<div id="task-1037" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 7. Simple shell 0.2.1
-
-<div>
-
-<span class="label label-info"> \#advanced </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Simple shell 0.2 +
 
 -   You are not allowed to use `strtok`
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
-
 **Repo:**
 
 -   GitHub repository: `simple_shell`
 
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
-
-<div id="task-1037-users-done-modal" class="modal fade users-done-modal"
-task-id="1037" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "7. Simple shell 0.2.1"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-8" data-role="task1040" position="11">
-
-<div id="task-1040" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 8. Simple shell 0.4.1
-
-<div>
-
-<span class="label label-info"> \#advanced </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Simple shell 0.4 +
 
@@ -1448,118 +584,17 @@ Simple shell 0.4 +
     98
     julien@ubuntu:~/shell$ 
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
-
 **Repo:**
 
 -   GitHub repository: `simple_shell`
 
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
-
-<div id="task-1040-users-done-modal" class="modal fade users-done-modal"
-task-id="1040" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "8. Simple shell 0.4.1"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-9" data-role="task1043" position="13">
-
-<div id="task-1043" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 9. setenv, unsetenv
-
-<div>
-
-<span class="label label-info"> \#advanced </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Simple shell 1.0 +
 
@@ -1574,118 +609,17 @@ Implement the `setenv` and `unsetenv` builtin commands
     -   Command syntax: `unsetenv VARIABLE`
     -   Should print something on stderr on failure
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
-
 **Repo:**
 
 -   GitHub repository: `simple_shell`
 
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
-
-<div id="task-1043-users-done-modal" class="modal fade users-done-modal"
-task-id="1043" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "9. setenv, unsetenv"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-10" data-role="task1044" position="14">
-
-<div id="task-1044" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 10. cd
-
-<div>
-
-<span class="label label-info"> \#advanced </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Simple shell 1.0 +
 
@@ -1701,118 +635,17 @@ Implement the builtin command `cd`:
 
 `man chdir`, `man getcwd`
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
-
 **Repo:**
 
 -   GitHub repository: `simple_shell`
 
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
-
-<div id="task-1044-users-done-modal" class="modal fade users-done-modal"
-task-id="1044" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "10. cd"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-11" data-role="task1045" position="15">
-
-<div id="task-1045" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 11. ;
-
-<div>
-
-<span class="label label-info"> \#advanced </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Simple shell 1.0 +
 
@@ -1836,118 +669,17 @@ Simple shell 1.0 +
     backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
     alex@~$
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
-
 **Repo:**
 
 -   GitHub repository: `simple_shell`
 
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
-
-<div id="task-1045-users-done-modal" class="modal fade users-done-modal"
-task-id="1045" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "11. ;"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-12" data-role="task1046" position="16">
-
-<div id="task-1046" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 12. && and \|\|
-
-<div>
-
-<span class="label label-info"> \#advanced </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Simple shell 1.0 +
 
@@ -1988,118 +720,17 @@ Simple shell 1.0 +
     backups  cache  crash  lib  local  lock  log  mail  metrics  opt  run  spool  tmp
     alex@~$
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
-
 **Repo:**
 
 -   GitHub repository: `simple_shell`
 
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
-
-<div id="task-1046-users-done-modal" class="modal fade users-done-modal"
-task-id="1046" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "12. && and \|\|"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-13" data-role="task1047" position="17">
-
-<div id="task-1047" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 13. alias
-
-<div>
-
-<span class="label label-info"> \#advanced </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Simple shell 1.0 +
 
@@ -2113,118 +744,17 @@ Simple shell 1.0 +
         whose `value` is given. If `name` is already an alias, replaces
         its value with `value`
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
-
 **Repo:**
 
 -   GitHub repository: `simple_shell`
 
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
-
-<div id="task-1047-users-done-modal" class="modal fade users-done-modal"
-task-id="1047" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "13. alias"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-14" data-role="task1048" position="18">
-
-<div id="task-1048" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 14. Variables
-
-<div>
-
-<span class="label label-info"> \#advanced </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Simple shell 1.0 +
 
@@ -2246,118 +776,13 @@ Simple shell 1.0 +
     $ exit 
     julien@ubuntu:~/shell$ 
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
-
-**Repo:**
-
--   GitHub repository: `simple_shell`
-
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
-
-<div id="task-1048-users-done-modal" class="modal fade users-done-modal"
-task-id="1048" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "14. Variables"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-15" data-role="task1049" position="19">
-
-<div id="task-1049" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 15. Comments
-
-<div>
-
-<span class="label label-info"> \#advanced </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Simple shell 1.0 +
 
@@ -2371,118 +796,14 @@ Simple shell 1.0 +
     $ exit
     julien@ubuntu:~/shell$ 
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
-
-**Repo:**
-
--   GitHub repository: `simple_shell`
-
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
 
 Help
 
-<div id="task-1049-users-done-modal" class="modal fade users-done-modal"
-task-id="1049" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
-
 #### Learners who are done with "15. Comments"
-
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
 
 Get a sandbox
 
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="task-num-16" data-role="task1052" position="22">
-
-<div id="task-1052" class="panel panel-default task-card">
-
-<span id="user_id" data-id="295751"></span>
-
-<div class="panel-heading panel-heading-actions">
-
 ### 16. File as input
-
-<div>
-
-<span class="label label-info"> \#advanced </span>
-
-</div>
-
-</div>
-
-<div class="panel-body">
-
-<span id="user_id" data-id="295751"></span>
 
 Simple shell 1.0 +
 
@@ -2494,255 +815,29 @@ Simple shell 1.0 +
 -   In this mode, the shell should not print a prompt and should not
     read from `stdin`
 
-</div>
-
-<div class="list-group">
-
-<div class="list-group-item">
 
 **Repo:**
 
 -   GitHub repository: `simple_shell`
 
-</div>
-
-</div>
-
-<div class="panel-footer">
-
-<div class="align-items-center d-flex justify-content-between">
-
-<div>
-
-<span class="no"></span> <span class="yes"></span> <span
-class="pending"></span> Done<span class="no pending">?</span><span
-class="yes">!</span>
-
 Help
-
-<div id="task-1052-users-done-modal" class="modal fade users-done-modal"
-task-id="1052" batch-id="92">
-
-<div class="modal-dialog">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Learners who are done with "16. File as input"
 
-</div>
-
-<div class="modal-body">
-
-<div class="list-group">
-
-</div>
-
-<div class="spinner">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div class="error">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
 Get a sandbox
-
-</div>
-
-<div class="fs-4">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="container-specs-modal" class="modal fade">
-
-<div class="modal-dialog modal-lg">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Recommended Sandbox
 
-</div>
-
-<div class="modal-body">
-
-<div react-class="user_containers/ContainerSpecs"
-react-props="{&quot;containerModelName&quot;:&quot;Sandbox&quot;,&quot;containerSpecs&quot;:[{&quot;description&quot;:&quot;\u003cp\u003eBasic Ubuntu 20.04, with vim, emacs, curl, wget and all needed for Foundations\u003c/p\u003e\n&quot;,&quot;id&quot;:39,&quot;name&quot;:&quot;Ubuntu 20.04&quot;,&quot;online&quot;:true,&quot;container&quot;:{&quot;container_id&quot;:null,&quot;id&quot;:406586,&quot;restart_uri&quot;:&quot;/user_containers/406586/restart.json&quot;,&quot;status&quot;:&quot;asleep&quot;,&quot;uri&quot;:&quot;/user_containers/406586.json&quot;,&quot;wake_uri&quot;:&quot;/user_containers/406586/wake.json&quot;,&quot;webterm_uri&quot;:&quot;/user_containers/406586/webterm&quot;,&quot;host&quot;:null,&quot;password&quot;:&quot;7a9cd2732763680311b1&quot;,&quot;ports&quot;:{&quot;3000&quot;:49971,&quot;4000&quot;:49969,&quot;443&quot;:49972,&quot;5000&quot;:49968,&quot;5001&quot;:49967,&quot;80&quot;:49973,&quot;8000&quot;:49966,&quot;8080&quot;:49965,&quot;22&quot;:49974,&quot;3306&quot;:49970}}}],&quot;containersLimit&quot;:2,&quot;csrfToken&quot;:&quot;jyII5pUME5F5K9WARq0YnWBZe1ms0PdMM_8UnK1Th9vJQHl0w2wPS_NH1YYe32uJrUVDMdU9JM8Ax7Ysboq5iA&quot;,&quot;startStatusURI&quot;:&quot;/user_containers/start_status.json&quot;,&quot;startURI&quot;:&quot;/user_containers/start.json&quot;}"
-react-cache-id="user_containers/ContainerSpecs-0">
-
-<div>
-
-<div class="d-flex gap-4 sandboxes-filters">
-
-<span class="btn btn-outline-primary"><span class="ml-2">Running
-only</span></span>
-
-<div class="align-items-center d-flex"
-style="position: relative; width: 100%;">
-
-</div>
-
-</div>
-
-<div class="mt-3">
-
 ### 1 image<span class="small">(1/2 Sandboxes spawned)</span>
 
-</div>
-
-<div class="mt-3">
-
-<div class="panel panel-default">
-
-<div class="panel-body border-left-info"
-style="border-left: 6px solid;">
-
-<div
-class="align-items-center d-flex flex-wrap justify-content-between">
-
-<div>
 
 ### <span class="ml-2">Ubuntu 20.04</span><span class="fs-4 label label-info ml-2">Asleep</span>
 
-<div class="mt-2 text-muted">
 
 Basic Ubuntu 20.04, with vim, emacs, curl, wget and all needed for
 Foundations
 
-</div>
-
-</div>
-
-<div class="d-flex flex-wrap gap-5">
-
-<span class="btn btn-success"><span class="ml-2">Wake</span></span><span
-class="btn btn-danger"><span class="ml-2">Destroy</span></span>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="copyright">
-
 Copyright © 2023 ALX, All rights reserved.
-
-</div>
-
-</div>
-
-<div id="search-modal" class="modal fade" tabindex="-1" role="dialog"
-aria-labelledby="search-modal-label">
-
-<div class="modal-dialog modal-md">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<div id="search-bar-container">
-
-</div>
-
-</div>
-
-<div class="modal-body">
-
-<div id="modal-spinner" class="spinner gap">
-
-<div class="bounce1">
-
-</div>
-
-<div class="bounce2">
-
-</div>
-
-<div class="bounce3">
-
-</div>
-
-</div>
-
-<div id="search-results-container">
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<div id="markdownGuideModal" class="modal fade" tabindex="-1"
-role="dialog" aria-labelledby="markdownGuideModalLabel"
-aria-hidden="true">
-
-<div class="modal-dialog modal-md">
-
-<div class="modal-content">
-
-<div class="modal-header">
-
-<span aria-hidden="true">×</span>
 
 #### Markdown Guide
 
@@ -2814,11 +909,3 @@ CSS style available: `width, height, opacity`
     var example = "hello!";
     alert(example);
     ```
-
-</div>
-
-</div>
-
-</div>
-
-</div>
