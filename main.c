@@ -19,9 +19,21 @@ int main(int argc, char **argv, char **env)
 		if (isatty(fileno(stdin)))
 			printf("$ ");
 
-		_getline();
+		char *cmd = _getline();
+		
 		/** tokenize here */
 		_strtok(argv);
+
+		printf("%s", cmd);
+
+		if (strstr(cmd, "env") == cmd)
+		{
+			while (*env != NULL)
+			{	
+				printf("%s\n", *env);
+				*env++;
+			}
+		}
 
 		free(lineptr);
 		lineptr = NULL;
@@ -66,14 +78,14 @@ void _strtok(char **argv)
 	int i = 0;
 	char *cmd = strtok(lineptr, " ");
 
-	if (*cmd == "env")
+/**	if (*cmd == "env")
 	{
 		while(*env != "NULL")
 		{
 			printf("%s\n", *env);
 		}
 	}
-
+*/
 	while (cmd)
 	{
 		argv[i] = cmd;
