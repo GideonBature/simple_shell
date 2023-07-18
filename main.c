@@ -66,6 +66,14 @@ void _strtok(char **argv)
 	int i = 0;
 	char *cmd = strtok(lineptr, " ");
 
+	if (*cmd == "env")
+	{
+		while(*env != "NULL")
+		{
+			printf("%s\n", *env);
+		}
+	}
+
 	while (cmd)
 	{
 		argv[i] = cmd;
@@ -175,6 +183,8 @@ char *check_cmd(char *cmd)
 	free(path_dup);
 	return (NULL);
 }
+
+
 
 
 /**
