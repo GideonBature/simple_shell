@@ -90,31 +90,6 @@ char *_getline(void)
 
 
 /**
- * _strtok - Tokenize a string
- * @argv: argument vector from _getline
- *
- * Return: void
- */
-// void _strtok(char *cmd_line)
-// {
-// 	printf("90\n");
-// 	int i = 0;
-// 	char *argv[100];
-
-// 	char *cmd = strtok(cmd_line, " ");
-
-// 	while (cmd)
-// 	{
-// 		argv[i] = cmd;
-// 		cmd = strtok(NULL, " ");
-// 		i++;
-// 	}
-
-// 	argv[i] = NULL;
-// }
-
-
-/**
  * is_builtin_cmd - checks for lists of built-in command
  * @cmd: the command checked
  *
