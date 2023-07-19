@@ -27,11 +27,12 @@ void exec_executable_cmd(char *cmd, char **argv, char **env);
 
 
 char *_getline(void);
-void _strtok(char *cmd_line, char **argv);
+void _strtok(char *cmd_line);
 int is_builtin_cmd(char *cmd);
 char *_getenv(char *name);
 char *check_cmd(char *argv);
 void execve_cmd(char *cmd, char **argv, char **env);
+char *_strdup(char *str);
 /** char *strtok(char *str, char *sep); */
 
 

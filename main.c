@@ -20,12 +20,20 @@ int main(int argc, char **argv, char **env)
 			printf("$ ");
 		
 		_getline();
-		_strtok(lineptr, argv);
-		printf("24\n");
+		char *cmd = strtok(lineptr, " ");
+		char *argv[100];
+		int i = 0;
+
+		while (cmd != NULL)
+		{
+			argv[i] = cmd;
+			cmd = strtok(NULL, " ");
+			i++;
+		}
+		argv[i] = NULL;
 
 		if (is_builtin_cmd(argv[0]))
 		{
-			printf("27\n");
 			exec_builtin_cmd(argv, env);
 		}
 		else if (argv[0] != NULL)
@@ -54,7 +62,6 @@ int main(int argc, char **argv, char **env)
  */
 char *_getline(void)
 {
-	printf("54\n");
 	size_t numbytes = 0, newnumbytes;
 	ssize_t linelen;
 
@@ -88,21 +95,23 @@ char *_getline(void)
  *
  * Return: void
  */
-void _strtok(char *cmd_line, char **argv)
-{
-	printf("90\n");
-	int i = 0;
-	char *cmd = strtok(cmd_line, " ");
+// void _strtok(char *cmd_line)
+// {
+// 	printf("90\n");
+// 	int i = 0;
+// 	char *argv[100];
 
-	while (cmd)
-	{
-		argv[i] = cmd;
-		cmd = strtok(NULL, " ");
-		i++;
-	}
+// 	char *cmd = strtok(cmd_line, " ");
 
-	argv[i] = NULL;
-}
+// 	while (cmd)
+// 	{
+// 		argv[i] = cmd;
+// 		cmd = strtok(NULL, " ");
+// 		i++;
+// 	}
+
+// 	argv[i] = NULL;
+// }
 
 
 /**
@@ -113,7 +122,6 @@ void _strtok(char *cmd_line, char **argv)
 */
 int is_builtin_cmd(char *cmd)
 {
-	printf("113\n");
 	int i = 0;
 	const char *builtins[5] = {"exit", "env", "setenv", "unsetenv", "cd"};
 
@@ -194,7 +202,6 @@ void cd_cmd(char **argv)
 */
 void exec_builtin_cmd(char **argv, char **envp)
 {
-	printf("194\n");
 	if (strstr(argv[0], "exit") == argv[0])
 			{
 				exit_cmd();
@@ -218,32 +225,6 @@ void exec_builtin_cmd(char **argv, char **envp)
 }
 
 /**
- * _getenv - check for PATH in environ
- * @name: name of the environment variable
- *
- * Return: PATH or NULL
-*/
-
-
-// char *getenv_member(char *name)
-// {
-// 	printf("227\n");
-// 	int i = 0;
-
-// 	while (environ[i])
-// 	{
-// 		printf("234\n");
-// 		if (strstr(environ[i], name) == environ[i])
-// 		{
-// 			printf("237\n");
-// 			return (environ[i]);
-// 		}
-// 		i++;
-// 	}
-// 	return (NULL);
-// }
-
-/**
  * _strdup - duplicates string along their memory size
  * @str: the string to be dublicated
  *
@@ -251,7 +232,7 @@ void exec_builtin_cmd(char **argv, char **envp)
 */
 
 
-char *_strdup(const char *str)
+char *_strdup(char *str)
 {
 	printf("251\n");
 	int str_len;
@@ -296,7 +277,7 @@ char *check_cmd(char *cmd)
 		if (path == NULL)
 			return (NULL);
 			
-		char *path_dup = _strdup(path);
+		char *path_dup = strdup(path);
 		char *dir = strtok(path_dup, ":");
 		
 		while (dir)
@@ -381,8 +362,7 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
 void clean_up(void)
 {
 	free(lineptr);
-	if (isatty(fileno(stdin)))
-		printf("\n");
+
 }
 
 /**
@@ -393,5 +373,7 @@ void clean_up(void)
 
 void sig_int_handler(int sig)
 {
+	if (isatty(fileno(stdin)))
+		printf("\n");
 	exit(0);
 }
