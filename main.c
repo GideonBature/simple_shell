@@ -124,11 +124,21 @@ int is_builtin_cmd(char *cmd)
 	return (0);
 }
 
+/**
+ * exit_cmd - exits/terminates the shell
+ *
+ * Return: void
+*/
 void exit_cmd(void)
 {
 	exit(0);
 }
 
+/**
+ * env_cmd - lists all environment variables
+ *
+ * Return: void
+*/
 void env_cmd(void)
 {
 	int i = 0;
@@ -139,14 +149,32 @@ void env_cmd(void)
 		i++;
 	}
 }
+
+/**
+ * setenv_cmd - sets environment variable
+ *
+ * Return: void
+*/
 void setenv_cmd(char *argv)
 {
 
 }
+
+/**
+ * unsetenv_cmd - remove environment variable set
+ *
+ * Return: void
+*/
 void unsetenv_cmd(char *argv)
 {
 
 }
+
+/**
+ * cd_cmd - change directory
+ *
+ * Return: void
+*/
 void cd_cmd(char *argv)
 {
 
