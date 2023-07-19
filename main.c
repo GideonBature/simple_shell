@@ -18,19 +18,25 @@ int main(int argc, char **argv, char **env)
 	{
 		if (isatty(fileno(stdin)))
 			printf("$ ");
-
-		_getline();
 		
-		/** tokenize here */
-		_strtok(argv);
+		_getline();
+		_strtok(lineptr, argv);
+		printf("24\n");
 
 		if (is_builtin_cmd(argv[0]))
 		{
+			printf("27\n");
 			exec_builtin_cmd(argv, env);
 		}
 		else if (argv[0] != NULL)
 		{
-			exec_executable_cmd(argv, env);
+			printf("32\n");
+			exec_executable_cmd(argv[0], argv, env);
+		}
+		else
+		{
+			perror("");
+			exit(1);
 		}
 
 		free(lineptr);
@@ -40,6 +46,7 @@ int main(int argc, char **argv, char **env)
 	return (0);
 }
 
+
 /**
  * _getline - Get line conditions
  *
@@ -47,13 +54,24 @@ int main(int argc, char **argv, char **env)
  */
 char *_getline(void)
 {
+	printf("54\n");
 	size_t numbytes = 0, newnumbytes;
 	ssize_t linelen;
 
 	linelen = getline(&lineptr, &numbytes, stdin);
 
 	if (linelen == -1)
-		exit(0);
+	{
+		if (isatty(fileno(stdin)))
+		{
+			perror("");
+			exit(1);
+		}
+		else
+		{
+			exit(1);
+		}
+	}
 
 	newnumbytes = strcspn(lineptr, "\n");
 
@@ -63,29 +81,29 @@ char *_getline(void)
 	return (lineptr);
 }
 
+
 /**
  * _strtok - Tokenize a string
  * @argv: argument vector from _getline
  *
  * Return: void
  */
-void _strtok(char **argv)
+void _strtok(char *cmd_line, char **argv)
 {
+	printf("90\n");
 	int i = 0;
-	char *cmd = strtok(lineptr, " ");
-	
-	//printf("%s\n", cmd);
+	char *cmd = strtok(cmd_line, " ");
 
 	while (cmd)
 	{
 		argv[i] = cmd;
-		/* printf("%s\n", cmd); */
 		cmd = strtok(NULL, " ");
 		i++;
 	}
 
 	argv[i] = NULL;
 }
+
 
 /**
  * is_builtin_cmd - checks for lists of built-in command
@@ -95,6 +113,7 @@ void _strtok(char **argv)
 */
 int is_builtin_cmd(char *cmd)
 {
+	printf("113\n");
 	int i = 0;
 	const char *builtins[5] = {"exit", "env", "setenv", "unsetenv", "cd"};
 
@@ -140,7 +159,7 @@ void env_cmd(void)
  *
  * Return: void
 */
-void setenv_cmd(char *argv)
+void setenv_cmd(char **argv)
 {
 
 }
@@ -150,7 +169,7 @@ void setenv_cmd(char *argv)
  *
  * Return: void
 */
-void unsetenv_cmd(char *argv)
+void unsetenv_cmd(char **argv)
 {
 
 }
@@ -160,10 +179,11 @@ void unsetenv_cmd(char *argv)
  *
  * Return: void
 */
-void cd_cmd(char *argv)
+void cd_cmd(char **argv)
 {
 
 }
+
 
 /**
  * exec_builtin_cmd - execute builtin commands
@@ -172,8 +192,9 @@ void cd_cmd(char *argv)
  *
  * Return: void
 */
-void exec_builtin_cmd(char **argv, char **env)
+void exec_builtin_cmd(char **argv, char **envp)
 {
+	printf("194\n");
 	if (strstr(argv[0], "exit") == argv[0])
 			{
 				exit_cmd();
@@ -184,15 +205,15 @@ void exec_builtin_cmd(char **argv, char **env)
 			}
 			if (strstr(argv[0], "setenv") == argv[0])
 			{
-				setenv_cmd(*argv);
+				setenv_cmd(argv);
 			}
 			if (strstr(argv[0], "unsetenv") == argv[0])
 			{
-				unsetenv_cmd(*argv);
+				unsetenv_cmd(argv);
 			}
 			if (strstr(argv[0], "cd") == argv[0])
 			{
-				cd_cmd(*argv);
+				cd_cmd(argv);
 			}
 }
 
@@ -203,20 +224,24 @@ void exec_builtin_cmd(char **argv, char **env)
  * Return: PATH or NULL
 */
 
-char *getenv_member(const char *name)
-{
-	int i = 0;
 
-	while (environ[i])
-	{
-		if (strstr(environ[i], name) == environ[i])
-		{
-			return (environ[i]);
-		}
-		i++;
-	}
-	return (NULL);
-}
+// char *getenv_member(char *name)
+// {
+// 	printf("227\n");
+// 	int i = 0;
+
+// 	while (environ[i])
+// 	{
+// 		printf("234\n");
+// 		if (strstr(environ[i], name) == environ[i])
+// 		{
+// 			printf("237\n");
+// 			return (environ[i]);
+// 		}
+// 		i++;
+// 	}
+// 	return (NULL);
+// }
 
 /**
  * _strdup - duplicates string along their memory size
@@ -225,8 +250,10 @@ char *getenv_member(const char *name)
  * Return: string or NULL
 */
 
+
 char *_strdup(const char *str)
 {
+	printf("251\n");
 	int str_len;
 	char *new_str;
 
@@ -253,78 +280,90 @@ char *_strdup(const char *str)
 */
 char *check_cmd(char *cmd)
 {
-	int dir_len, cmd_len;
-	char *path = getenv("PATH");
-	
-	if (path == NULL)
-		return (NULL);
-
-	char *path_dup = strdup(path);
-	char *dir = strtok(path_dup, ":");
-
-	while (dir)
+	if (cmd[0] == '/')
 	{
-		dir_len = strlen(dir);
-		cmd_len = strlen(cmd);
-		char *full_path;
-
-		full_path = malloc((dir_len + cmd_len + 2) * sizeof(char));
-
-		if (full_path == NULL)
+		if (access(cmd, X_OK) == 0)
 		{
-			free(full_path);
-			free(path_dup);
+			return (cmd);
+		}
+	}
+	else
+	{
+		printf("279\n");
+		int dir_len, cmd_len;
+		char *path = getenv("PATH");
+		
+		if (path == NULL)
 			return (NULL);
-		}
-
-		strcpy(full_path, dir);
-		strcat(full_path, "/");
-		strcat(full_path, cmd);
-
-		if (access(full_path, X_OK) == 0)
+			
+		char *path_dup = _strdup(path);
+		char *dir = strtok(path_dup, ":");
+		
+		while (dir)
 		{
-			free(path_dup);
-			return (full_path);
+			dir_len = strlen(dir);
+			cmd_len = strlen(cmd);
+			char *full_path;
+			
+			full_path = malloc((dir_len + cmd_len + 2) * sizeof(char));
+			
+			if (full_path == NULL)
+			{
+				free(path_dup);
+				return (NULL);
+			}
+				
+			strcpy(full_path, dir);
+			strcat(full_path, "/");
+			strcat(full_path, cmd);
+			if (access(full_path, X_OK) == 0)
+			{
+				free(path_dup);
+				return (full_path);
+			}
+			
+			free(full_path);
+			dir = strtok(NULL, ":");
 		}
-
-		free(full_path);
-		dir = strtok(NULL, ":");
+	free(path_dup);
 	}
 
-	free(dir);
-	free(path_dup);
 	return (NULL);
 }
 
-void execve_cmd(char *cmd, char **argv, char **env)
+
+
+void execve_cmd(char *cmd, char **argv, char **envp)
 {
-	if (execve(cmd, argv, env) == -1)
+	printf("324\n");
+	if (execve(cmd, argv, envp) == -1)
 	{
 		perror("");
 		exit(0);
 	}
 }
 
-void exec_executable_cmd(char **argv, char **env)
+void exec_executable_cmd(char *cmd, char **argv, char **envp)
 {
+	printf("334\n");
 	pid_t child_pid;
 	int status;
 
-	char *cmd = check_cmd(argv[0]);
+	char *full_path = check_cmd(cmd);
 
-	if (cmd != NULL)
+	if (full_path != NULL)
 	{
 		child_pid = fork();
 
 		if (child_pid == -1)
 		{
-			perror();
+			perror("");
 			exit(1);
 		}
 		else if (child_pid == 0)
 		{
-			execve_cmd(cmd, argv, env);
-			perror();
+			execve_cmd(full_path, argv, envp);
+			perror("");
 			exit(1);
 		}
 		else

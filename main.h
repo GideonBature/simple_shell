@@ -9,6 +9,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include <stdbool.h>
 
 
 extern char **environ;
@@ -16,17 +17,19 @@ char *lineptr = NULL;
 
 void exit_cmd(void);
 void env_cmd(void);
-void setenv_cmd(char *argv);
-void unsetenv_cmd(char *argv);
-void cd_cmd(char *argv);
+
+void setenv_cmd(char **argv);
+void unsetenv_cmd(char **argv);
+void cd_cmd(char **argv);
+
 void exec_builtin_cmd(char **argv, char **env);
-void exec_executable_cmd(char **argv, char **env);
+void exec_executable_cmd(char *cmd, char **argv, char **env);
 
 
 char *_getline(void);
-void _strtok(char **argv);
+void _strtok(char *cmd_line, char **argv);
 int is_builtin_cmd(char *cmd);
-char *_getenv(const char *name);
+char *_getenv(char *name);
 char *check_cmd(char *argv);
 void execve_cmd(char *cmd, char **argv, char **env);
 /** char *strtok(char *str, char *sep); */
