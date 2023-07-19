@@ -33,6 +33,8 @@ int main(void)
 		printf("31\n");
 		if (cmd == NULL)
 		{
+			free(lineptr);
+			free(cmd);
 			goto label;
 		}
 
