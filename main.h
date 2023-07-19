@@ -3,11 +3,13 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <unistd.h>
 #include <string.h>
 #include <signal.h>
 #include <fcntl.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #include <unistd.h>
+
 
 extern char **environ;
 char *lineptr = NULL;
