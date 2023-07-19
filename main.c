@@ -374,6 +374,6 @@ void clean_up(void)
 void sig_int_handler(int sig)
 {
 	if (isatty(fileno(stdin)))
-		printf("\n");
-	exit(0);
+			printf("\n");
+	exit(1);
 }
