@@ -1,6 +1,7 @@
 #ifndef _SIMPLE_SHELL_
 #define _SIMPLE_SHELL_
 
+#define _GNU_SOURCE
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -36,6 +37,6 @@ char *_strdup(char *str);
 
 
 void clean_up(void);
-int sig_int_handler(void);
+void sig_int_handler(int signum);
 
 #endif

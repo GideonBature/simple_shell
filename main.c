@@ -16,16 +16,29 @@ int main(void)
 
 	while (1)
 	{
+		printf("19\n");
+		label:
 		if (isatty(fileno(stdin)))
 			printf("$ ");
 		
 		_getline();
+
+		printf("25\n");
 		char *cmd = strtok(lineptr, " ");
+
+		printf("27\n");
 		char *argv[100];
 		int i = 0;
 
+		printf("31\n");
+		if (cmd == NULL)
+		{
+			goto label;
+		}
+
 		while (cmd != NULL)
 		{
+			printf("34\n");
 			argv[i] = cmd;
 			cmd = strtok(NULL, " ");
 			i++;
@@ -34,7 +47,8 @@ int main(void)
 
 		if (is_builtin_cmd(argv[0]))
 		{
-			exec_builtin_cmd(environ);
+			printf("43\n");
+			exec_builtin_cmd(argv);
 		}
 		else if (argv[0] != NULL)
 		{
@@ -47,11 +61,9 @@ int main(void)
 			exit(1);
 		}
 		free(lineptr);
-		lineptr = NULL;
 	}
-	free(lineptr);
-	lineptr = NULL;
 
+	lineptr = NULL;
 	return (0);
 }
 
@@ -179,25 +191,25 @@ void cd_cmd(char **argv)
 void exec_builtin_cmd(char **argv)
 {
 	if (strstr(argv[0], "exit") == argv[0])
-			{
-				exit_cmd();
-			}
-			if (strstr(argv[0], "env") == argv[0])
-			{
-				env_cmd();
-			}
-			if (strstr(argv[0], "setenv") == argv[0])
-			{
-				setenv_cmd(argv);
-			}
-			if (strstr(argv[0], "unsetenv") == argv[0])
-			{
-				unsetenv_cmd(argv);
-			}
-			if (strstr(argv[0], "cd") == argv[0])
-			{
-				cd_cmd(argv);
-			}
+	{
+		exit_cmd();
+	}
+	if (strstr(argv[0], "env") == argv[0])
+	{
+		env_cmd();
+	}
+	if (strstr(argv[0], "setenv") == argv[0])
+	{
+		setenv_cmd(argv);
+	}
+	if (strstr(argv[0], "unsetenv") == argv[0])
+	{
+		unsetenv_cmd(argv);
+	}
+	if (strstr(argv[0], "cd") == argv[0])
+	{
+		cd_cmd(argv);
+	}
 }
 
 /**
@@ -206,8 +218,6 @@ void exec_builtin_cmd(char **argv)
  *
  * Return: string or NULL
 */
-
-
 char *_strdup(char *str)
 {
 	printf("251\n");
@@ -253,7 +263,7 @@ char *check_cmd(char *cmd)
 		if (path == NULL)
 			return (NULL);
 			
-		char *path_dup = strdup(path);
+		char *path_dup = _strdup(path);
 		char *dir = strtok(path_dup, ":");
 		
 		while (dir)
@@ -289,8 +299,14 @@ char *check_cmd(char *cmd)
 	return (NULL);
 }
 
-
-
+/**
+ * execve_cmd - execute the commands
+ * @cmd: command
+ * @argv: argument variable
+ * @envp: argument variable
+ *
+ * Return: void
+*/
 void execve_cmd(char *cmd, char **argv, char **envp)
 {
 	printf("324\n");
@@ -301,6 +317,15 @@ void execve_cmd(char *cmd, char **argv, char **envp)
 	}
 }
 
+
+/**
+ * exec_executable_cmd - execute the executable commands
+ * @cmd: command
+ * @argv: argument variable
+ * @envp: argument variable
+ *
+ * Return: void
+*/
 void exec_executable_cmd(char *cmd, char **argv, char **envp)
 {
 	printf("334\n");
@@ -349,7 +374,7 @@ void clean_up(void)
  * Return: void
 */
 
-int sig_int_handler(void)
+void sig_int_handler(int signum)
 {
 	if (isatty(fileno(stdin)))
 			printf("\n");
