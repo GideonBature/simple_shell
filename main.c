@@ -28,6 +28,10 @@ int main(int argc, char **argv, char **env)
 		{
 			exec_builtin_cmd(argv, env);
 		}
+		else if (argv[0] != NULL)
+		{
+			exec_executable_cmd(argv, env);
+		}
 
 		free(lineptr);
 		lineptr = NULL;
@@ -161,6 +165,13 @@ void cd_cmd(char *argv)
 
 }
 
+/**
+ * exec_builtin_cmd - execute builtin commands
+ * @argv: argument vector - points to arguments entered
+ * @env: imports the environment
+ *
+ * Return: void
+*/
 void exec_builtin_cmd(char **argv, char **env)
 {
 	if (strstr(argv[0], "exit") == argv[0])
@@ -291,6 +302,35 @@ void execve_cmd(char *cmd, char **argv, char **env)
 	{
 		perror("");
 		exit(0);
+	}
+}
+
+void exec_executable_cmd(char **argv, char **env)
+{
+	pid_t child_pid;
+	int status;
+
+	char *cmd = check_cmd(argv[0]);
+
+	if (cmd != NULL)
+	{
+		child_pid = fork();
+
+		if (child_pid == -1)
+		{
+			perror();
+			exit(1);
+		}
+		else if (child_pid == 0)
+		{
+			execve_cmd(cmd, argv, env);
+			perror();
+			exit(1);
+		}
+		else
+		{
+			waitpid(child_pid, &status, 0);
+		}
 	}
 }
 

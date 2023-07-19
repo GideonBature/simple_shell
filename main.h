@@ -20,6 +20,7 @@ void setenv_cmd(char *argv);
 void unsetenv_cmd(char *argv);
 void cd_cmd(char *argv);
 void exec_builtin_cmd(char **argv, char **env);
+void exec_executable_cmd(char **argv, char **env);
 
 
 char *_getline(void);
