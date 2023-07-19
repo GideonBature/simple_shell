@@ -1,5 +1,5 @@
 #include "main.h"
-int main(int argc, char **argv, char **env);
+int main(void);
 
 /**
  * main - Entrance to program
@@ -9,7 +9,7 @@ int main(int argc, char **argv, char **env);
  *
  * Return: Exit code
  */
-int main(int argc, char **argv, char **env)
+int main(void)
 {
 	atexit(clean_up);
 	signal(SIGINT, sig_int_handler);
@@ -34,22 +34,23 @@ int main(int argc, char **argv, char **env)
 
 		if (is_builtin_cmd(argv[0]))
 		{
-			exec_builtin_cmd(argv, env);
+			exec_builtin_cmd(environ);
 		}
 		else if (argv[0] != NULL)
 		{
 			printf("32\n");
-			exec_executable_cmd(argv[0], argv, env);
+			exec_executable_cmd(argv[0], argv, environ);
 		}
 		else
 		{
 			perror("");
 			exit(1);
 		}
-
 		free(lineptr);
 		lineptr = NULL;
 	}
+	free(lineptr);
+	lineptr = NULL;
 
 	return (0);
 }
@@ -175,7 +176,7 @@ void cd_cmd(char **argv)
  *
  * Return: void
 */
-void exec_builtin_cmd(char **argv, char **envp)
+void exec_builtin_cmd(char **argv)
 {
 	if (strstr(argv[0], "exit") == argv[0])
 			{
@@ -265,6 +266,7 @@ char *check_cmd(char *cmd)
 			
 			if (full_path == NULL)
 			{
+				free(full_path);
 				free(path_dup);
 				return (NULL);
 			}
@@ -281,7 +283,7 @@ char *check_cmd(char *cmd)
 			free(full_path);
 			dir = strtok(NULL, ":");
 		}
-	free(path_dup);
+		free(path_dup);
 	}
 
 	return (NULL);
@@ -327,6 +329,7 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
 			waitpid(child_pid, &status, 0);
 		}
 	}
+	free(full_path);
 }
 
 /**
@@ -336,8 +339,8 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
 */
 void clean_up(void)
 {
-	free(lineptr);
-
+	if (lineptr != NULL)
+		free(lineptr);
 }
 
 /**
@@ -346,7 +349,7 @@ void clean_up(void)
  * Return: void
 */
 
-void sig_int_handler(int sig)
+int sig_int_handler(void)
 {
 	if (isatty(fileno(stdin)))
 			printf("\n");

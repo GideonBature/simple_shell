@@ -22,12 +22,11 @@ void setenv_cmd(char **argv);
 void unsetenv_cmd(char **argv);
 void cd_cmd(char **argv);
 
-void exec_builtin_cmd(char **argv, char **env);
+void exec_builtin_cmd(char **argv);
 void exec_executable_cmd(char *cmd, char **argv, char **env);
 
 
 char *_getline(void);
-void _strtok(char *cmd_line);
 int is_builtin_cmd(char *cmd);
 char *_getenv(char *name);
 char *check_cmd(char *argv);
@@ -37,6 +36,6 @@ char *_strdup(char *str);
 
 
 void clean_up(void);
-void sig_int_handler(int sig);
+int sig_int_handler(void);
 
 #endif
