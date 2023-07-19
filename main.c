@@ -26,26 +26,7 @@ int main(int argc, char **argv, char **env)
 
 		if (is_builtin_cmd(argv[0]))
 		{
-			if (strstr(argv[0], "exit") == argv[0])
-			{
-				exit_cmd();
-			}
-			if (strstr(argv[0], "env") == argv[0])
-			{
-				env_cmd();
-			}
-			if (strstr(argv[0], "setenv") == argv[0])
-			{
-				setenv_cmd(*argv);
-			}
-			if (strstr(argv[0], "unsetenv") == argv[0])
-			{
-				unsetenv_cmd(*argv);
-			}
-			if (strstr(argv[0], "cd") == argv[0])
-			{
-				cd_cmd(*argv);
-			}
+			exec_builtin_cmd(argv, env);
 		}
 
 		free(lineptr);
@@ -178,6 +159,30 @@ void unsetenv_cmd(char *argv)
 void cd_cmd(char *argv)
 {
 
+}
+
+void exec_builtin_cmd(char **argv, char **env)
+{
+	if (strstr(argv[0], "exit") == argv[0])
+			{
+				exit_cmd();
+			}
+			if (strstr(argv[0], "env") == argv[0])
+			{
+				env_cmd();
+			}
+			if (strstr(argv[0], "setenv") == argv[0])
+			{
+				setenv_cmd(*argv);
+			}
+			if (strstr(argv[0], "unsetenv") == argv[0])
+			{
+				unsetenv_cmd(*argv);
+			}
+			if (strstr(argv[0], "cd") == argv[0])
+			{
+				cd_cmd(*argv);
+			}
 }
 
 /**
