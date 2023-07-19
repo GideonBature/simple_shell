@@ -3,9 +3,6 @@ int main(void);
 
 /**
  * main - Entrance to program
- * @argc: Argument count
- * @argv: Array of argument values
- * @env: Environment variables
  *
  * Return: Exit code
  */
@@ -17,10 +14,10 @@ int main(void)
 	while (1)
 	{
 		printf("19\n");
-		label:
+label:
 		if (isatty(fileno(stdin)))
 			printf("$ ");
-		
+
 		_getline();
 
 		printf("25\n");
@@ -145,7 +142,7 @@ void env_cmd(void)
 {
 	int i = 0;
 
-	while(environ[i] != NULL)
+	while (environ[i] != NULL)
 	{
 		printf("%s\n", environ[i]);
 		i++;
@@ -154,6 +151,7 @@ void env_cmd(void)
 
 /**
  * setenv_cmd - sets environment variable
+ * @argv: argument vector
  *
  * Return: void
 */
@@ -164,6 +162,7 @@ void setenv_cmd(char **argv)
 
 /**
  * unsetenv_cmd - remove environment variable set
+ * @argv: argument vector
  *
  * Return: void
 */
@@ -174,6 +173,7 @@ void unsetenv_cmd(char **argv)
 
 /**
  * cd_cmd - change directory
+ * @argv: argument vector
  *
  * Return: void
 */
@@ -186,7 +186,6 @@ void cd_cmd(char **argv)
 /**
  * exec_builtin_cmd - execute builtin commands
  * @argv: argument vector - points to arguments entered
- * @env: imports the environment
  *
  * Return: void
 */
@@ -243,7 +242,7 @@ char *_strdup(char *str)
 
 /**
  * check_cmd - check cmd whether inbuilt or executable
- * @argv: argument vector (tokens)
+ * @cmd: commands (tokens)
  *
  * Return: void
 */
@@ -261,28 +260,28 @@ char *check_cmd(char *cmd)
 		printf("279\n");
 		int dir_len, cmd_len;
 		char *path = getenv("PATH");
-		
+
 		if (path == NULL)
 			return (NULL);
-			
+
 		char *path_dup = _strdup(path);
 		char *dir = strtok(path_dup, ":");
-		
+
 		while (dir)
 		{
 			dir_len = strlen(dir);
 			cmd_len = strlen(cmd);
 			char *full_path;
-			
+
 			full_path = malloc((dir_len + cmd_len + 2) * sizeof(char));
-			
+
 			if (full_path == NULL)
 			{
 				free(full_path);
 				free(path_dup);
 				return (NULL);
 			}
-				
+
 			strcpy(full_path, dir);
 			strcat(full_path, "/");
 			strcat(full_path, cmd);
@@ -291,7 +290,7 @@ char *check_cmd(char *cmd)
 				free(path_dup);
 				return (full_path);
 			}
-			
+
 			free(full_path);
 			dir = strtok(NULL, ":");
 		}
@@ -372,13 +371,14 @@ void clean_up(void)
 
 /**
  * sig_int_handler - handles the exit signal
- * @sig: the signal passed
+ * @signum: the signal passed
+ *
  * Return: void
 */
 
 void sig_int_handler(int signum)
 {
 	if (isatty(fileno(stdin)))
-			printf("\n");
+		printf("\n");
 	exit(1);
 }
