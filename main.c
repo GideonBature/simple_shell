@@ -34,6 +34,18 @@ int main(int argc, char **argv, char **env)
 			{
 				env_cmd();
 			}
+			if (strstr(argv[0], "setenv") == argv[0])
+			{
+				setenv_cmd(*argv);
+			}
+			if (strstr(argv[0], "unsetenv") == argv[0])
+			{
+				unsetenv_cmd(*argv);
+			}
+			if (strstr(argv[0], "cd") == argv[0])
+			{
+				cd_cmd(*argv);
+			}
 		}
 
 		free(lineptr);
@@ -126,6 +138,18 @@ void env_cmd(void)
 		printf("%s\n", environ[i]);
 		i++;
 	}
+}
+void setenv_cmd(char *argv)
+{
+
+}
+void unsetenv_cmd(char *argv)
+{
+
+}
+void cd_cmd(char *argv)
+{
+
 }
 
 /**

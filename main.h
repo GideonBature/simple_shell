@@ -14,6 +14,9 @@ char *lineptr = NULL;
 
 void exit_cmd(void);
 void env_cmd(void);
+void setenv_cmd(char *argv);
+void unsetenv_cmd(char *argv);
+void cd_cmd(char *argv);
 
 
 char *_getline(void);
