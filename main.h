@@ -17,6 +17,7 @@ char *_getline(void);
 void _strtok(char **argv);
 char *_getenv(const char *name);
 char *check_cmd(char *argv);
+void execve_cmd(char *cmd, char **argv, char **env);
 /** char *strtok(char *str, char *sep); */
 
 
