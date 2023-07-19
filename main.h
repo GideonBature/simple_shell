@@ -12,9 +12,13 @@
 extern char **environ;
 char *lineptr = NULL;
 
+void exit_cmd(void);
+void env_cmd(void);
+
 
 char *_getline(void);
 void _strtok(char **argv);
+int is_builtin_cmd(char *cmd);
 char *_getenv(const char *name);
 char *check_cmd(char *argv);
 void execve_cmd(char *cmd, char **argv, char **env);

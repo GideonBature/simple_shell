@@ -19,24 +19,21 @@ int main(int argc, char **argv, char **env)
 		if (isatty(fileno(stdin)))
 			printf("$ ");
 
-		char *cmd = _getline();
+		_getline();
 		
 		/** tokenize here */
 		_strtok(argv);
 
-		if (strstr(cmd, "env") == cmd)
+		if (is_builtin_cmd(argv[0]))
 		{
-			while (*env != NULL)
-			{	
-				printf("%s\n", *env);
-				*env++;
+			if (strstr(argv[0], "exit") == argv[0])
+			{
+				exit_cmd();
 			}
-		} 
-		else if (strstr(cmd, "exit") == cmd)
-		{
-			free(lineptr);
-			lineptr = NULL;
-			return (0);
+			if (strstr(argv[0], "env") == argv[0])
+			{
+				env_cmd();
+			}
 		}
 
 		free(lineptr);
@@ -45,8 +42,6 @@ int main(int argc, char **argv, char **env)
 
 	return (0);
 }
-
-
 
 /**
  * _getline - Get line conditions
@@ -81,15 +76,9 @@ void _strtok(char **argv)
 {
 	int i = 0;
 	char *cmd = strtok(lineptr, " ");
+	
+	//printf("%s\n", cmd);
 
-/**	if (*cmd == "env")
-	{
-		while(*env != "NULL")
-		{
-			printf("%s\n", *env);
-		}
-	}
-*/
 	while (cmd)
 	{
 		argv[i] = cmd;
@@ -97,7 +86,46 @@ void _strtok(char **argv)
 		cmd = strtok(NULL, " ");
 		i++;
 	}
+
 	argv[i] = NULL;
+}
+
+/**
+ * is_builtin_cmd - checks for lists of built-in command
+ * @cmd: the command checked
+ *
+ * Return: 0 or 1
+*/
+int is_builtin_cmd(char *cmd)
+{
+	int i = 0;
+	const char *builtins[5] = {"exit", "env", "setenv", "unsetenv", "cd"};
+
+	while (i < 5)
+	{
+		if (strstr(cmd, builtins[i]) == cmd)
+		{
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+void exit_cmd(void)
+{
+	exit(0);
+}
+
+void env_cmd(void)
+{
+	int i = 0;
+
+	while(environ[i] != NULL)
+	{
+		printf("%s\n", environ[i]);
+		i++;
+	}
 }
 
 /**
@@ -198,6 +226,15 @@ char *check_cmd(char *cmd)
 	free(dir);
 	free(path_dup);
 	return (NULL);
+}
+
+void execve_cmd(char *cmd, char **argv, char **env)
+{
+	if (execve(cmd, argv, env) == -1)
+	{
+		perror("");
+		exit(0);
+	}
 }
 
 /**
