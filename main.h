@@ -40,7 +40,7 @@ char *_strdup(char *str);
 /** char *strtok(char *str, char *sep); */
 envstruct *insert_end(envstruct *head, char *key, char *value);
 char *get_value(envstruct *head, char *key);
-
+int remove_value(envstruct *head, char *key);
 
 void clean_up(void);
 void sig_int_handler(int signum);
