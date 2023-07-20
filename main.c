@@ -17,8 +17,8 @@ int main(void)
 label:
 		if (isatty(fileno(stdin)))
 			printf("$ ");
-
-		_getline();
+		
+		_getline(); /** lineptr and numbytes accessed and modified from the he    ader file and updated here */
 
 		printf("25\n");
 		char *cmd = strtok(lineptr, " ");
@@ -124,6 +124,75 @@ int is_builtin_cmd(char *cmd)
 }
 
 /**
+ * exec_builtin_cmd - execute builtin commands
+ * @argv: argument vector - points to arguments entered
+ *
+ * Return: void
+*/
+void exec_builtin_cmd(char **argv)
+{
+	if (strstr(argv[0], "exit") == argv[0])
+	{
+		exit_cmd();
+	}
+	if (strstr(argv[0], "env") == argv[0])
+	{
+		env_cmd();
+	}
+	if (strstr(argv[0], "setenv") == argv[0])
+	{
+		setenv_cmd(argv);
+	}
+	if (strstr(argv[0], "unsetenv") == argv[0])
+	{
+		unsetenv_cmd(argv);
+	}
+	if (strstr(argv[0], "cd") == argv[0])
+	{
+		cd_cmd(argv);
+	}
+}
+
+/**
+ * exec_executable_cmd - execute the executable commands
+ * @cmd: command
+ * @argv: argument variable
+ * @envp: argument variable
+ *
+ * Return: void
+*/
+void exec_executable_cmd(char *cmd, char **argv, char **envp)
+{
+	printf("334\n");
+	pid_t child_pid;
+	int status;
+
+	char *full_path = check_cmd(cmd);
+
+	if (full_path != NULL)
+	{
+		child_pid = fork();
+
+		if (child_pid == -1)
+		{
+			perror("");
+			exit(1);
+		}
+		else if (child_pid == 0)
+		{
+			execve_cmd(full_path, argv, envp);
+			perror("");
+			exit(1);
+		}
+		else
+		{
+			waitpid(child_pid, &status, 0);
+		}
+	}
+	free(full_path);
+}
+
+/**
  * exit_cmd - exits/terminates the shell
  *
  * Return: void
@@ -183,35 +252,6 @@ void cd_cmd(char **argv)
 }
 
 
-/**
- * exec_builtin_cmd - execute builtin commands
- * @argv: argument vector - points to arguments entered
- *
- * Return: void
-*/
-void exec_builtin_cmd(char **argv)
-{
-	if (strstr(argv[0], "exit") == argv[0])
-	{
-		exit_cmd();
-	}
-	if (strstr(argv[0], "env") == argv[0])
-	{
-		env_cmd();
-	}
-	if (strstr(argv[0], "setenv") == argv[0])
-	{
-		setenv_cmd(argv);
-	}
-	if (strstr(argv[0], "unsetenv") == argv[0])
-	{
-		unsetenv_cmd(argv);
-	}
-	if (strstr(argv[0], "cd") == argv[0])
-	{
-		cd_cmd(argv);
-	}
-}
 
 /**
  * _strdup - duplicates string along their memory size
@@ -319,44 +359,6 @@ void execve_cmd(char *cmd, char **argv, char **envp)
 }
 
 
-/**
- * exec_executable_cmd - execute the executable commands
- * @cmd: command
- * @argv: argument variable
- * @envp: argument variable
- *
- * Return: void
-*/
-void exec_executable_cmd(char *cmd, char **argv, char **envp)
-{
-	printf("334\n");
-	pid_t child_pid;
-	int status;
-
-	char *full_path = check_cmd(cmd);
-
-	if (full_path != NULL)
-	{
-		child_pid = fork();
-
-		if (child_pid == -1)
-		{
-			perror("");
-			exit(1);
-		}
-		else if (child_pid == 0)
-		{
-			execve_cmd(full_path, argv, envp);
-			perror("");
-			exit(1);
-		}
-		else
-		{
-			waitpid(child_pid, &status, 0);
-		}
-	}
-	free(full_path);
-}
 
 /**
  * clean_up - frees the lineptr upon exit
