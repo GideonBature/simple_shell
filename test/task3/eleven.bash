@@ -2,7 +2,7 @@
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# Remove the `$PATH` environment variable and execute `/bin/ls`
+# Execute `/bin/ls` (surrounded by spaces) (large)
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -21,7 +21,7 @@
 # as follows: "echo $shell_input | ./hsh"
 #
 # It can be empty and multiline
-shell_input="/bin/ls"
+shell_input="                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   /bin/ls                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    "
 
 ################################################################################
 # The variable 'shell_params' IS OPTIONNAL
@@ -41,9 +41,6 @@ shell_input="/bin/ls"
 # Return value: Discarded
 function check_setup()
 {
-	OLDPATH="$PATH"
-	unset PATH
-
 	return 0
 }
 
@@ -84,8 +81,6 @@ function sh_setup()
 function check_callback()
 {
 	status=$1
-
-	export PATH="$OLDPATH"
 
 	return $status
 }

@@ -2,7 +2,7 @@
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# Remove all environment variables and execute `ls`
+# Copy file /bin/ls to .hbtn_ls (in the current directory), change PATH to point to PWD and execute `.hbtn_ls /var`
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -21,7 +21,7 @@
 # as follows: "echo $shell_input | ./hsh"
 #
 # It can be empty and multiline
-shell_input="ls"
+shell_input=".hbtn_ls /var"
 
 ################################################################################
 # The variable 'shell_params' IS OPTIONNAL
@@ -41,15 +41,9 @@ shell_input="ls"
 # Return value: Discarded
 function check_setup()
 {
-	current_env=$(/usr/bin/env)
-	for i in `/usr/bin/env | /usr/bin/cut -d'=' -f1`
-	do
-		unset $i
-	done
-
-	# Important: Disable valgrind when running without an environment
-	let valgrind_error=0
-	let valgrind_leak=0
+	$CP "/bin/ls" "$PWD/.hbtn_ls"
+	OLDPATH="$PATH"
+	export PATH="$PWD"
 
 	return 0
 }
@@ -90,13 +84,10 @@ function sh_setup()
 #     1  -> Check fails
 function check_callback()
 {
-	let status=0
+	status=$1
 
-	$ECHO -n "" > $EXPECTED_OUTPUTFILE
-	$ECHO "./hsh: 1: ls: not found" > $EXPECTED_ERROR_OUTPUTFILE
-	$ECHO -n "127" > $EXPECTED_STATUS
-
-	check_diff
+	export PATH="$OLDPATH"
+	$RM -f "$PWD/.hbtn_ls"
 
 	return $status
 }

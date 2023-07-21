@@ -2,7 +2,7 @@
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# Copy the file /bin/ls to `hbtn_ls` (in the parent's parent directory) and execute `./.././../////././hbtn_ls /var`
+# Copy the file /bin/ls to `hbtn_ls` (in the parent's parent directory) and execute `../../hbtn_ls /var`
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -21,7 +21,7 @@
 # as follows: "echo $shell_input | ./hsh"
 #
 # It can be empty and multiline
-shell_input="./.././../////././hbtn_ls /var"
+shell_input="../../hbtn_ls /var"
 
 ################################################################################
 # The variable 'shell_params' IS OPTIONNAL

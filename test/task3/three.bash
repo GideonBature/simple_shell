@@ -2,7 +2,7 @@
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# Execute `ls -l`
+# Copy the file /bin/ls to `hbtn_ls` (in the parent's parent directory) and execute `./.././../hbtn_ls /var`
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -21,7 +21,7 @@
 # as follows: "echo $shell_input | ./hsh"
 #
 # It can be empty and multiline
-shell_input="ls -l"
+shell_input="./.././../hbtn_ls /var"
 
 ################################################################################
 # The variable 'shell_params' IS OPTIONNAL
@@ -41,6 +41,8 @@ shell_input="ls -l"
 # Return value: Discarded
 function check_setup()
 {
+	$CP "/bin/ls" "$PWD/../../hbtn_ls"
+
 	return 0
 }
 
@@ -81,6 +83,8 @@ function sh_setup()
 function check_callback()
 {
 	status=$1
+
+	$RM -f "$PWD/../../hbtn_ls"
 
 	return $status
 }

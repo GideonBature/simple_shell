@@ -2,7 +2,7 @@
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# '/bin' is in the middle of PATH, execute `ls`
+# PATH does not contain '/bin', execute `ls`
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -42,7 +42,7 @@ shell_input="ls"
 function check_setup()
 {
 	OLDPATH="$PATH"
-	export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/bin:/usr/bin:/sbin:/usr/games:/usr/local/games"
+	export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/usr/games:/usr/local/games"
 
 	return 0
 }

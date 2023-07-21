@@ -2,7 +2,7 @@
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# PATH does not contain '/bin', execute `ls`
+# Execute `/bin/ls` and `ls` several times
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -21,7 +21,16 @@
 # as follows: "echo $shell_input | ./hsh"
 #
 # It can be empty and multiline
-shell_input="ls"
+shell_input="ls
+ls
+ls
+/bin/ls
+ls
+ls
+ls
+/bin/ls
+ls
+ls"
 
 ################################################################################
 # The variable 'shell_params' IS OPTIONNAL
@@ -41,9 +50,6 @@ shell_input="ls"
 # Return value: Discarded
 function check_setup()
 {
-	OLDPATH="$PATH"
-	export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/usr/games:/usr/local/games"
-
 	return 0
 }
 
@@ -84,8 +90,6 @@ function sh_setup()
 function check_callback()
 {
 	status=$1
-
-	export PATH="$OLDPATH"
 
 	return $status
 }

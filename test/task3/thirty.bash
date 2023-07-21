@@ -2,7 +2,7 @@
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# `fork` should not be called when a command does not exist
+# Copy the file `/bin/ls` to `hbtn_ls` (in the current directory), set the PATH to PWD, and execute `hbtn_ls /var`
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -21,7 +21,7 @@
 # as follows: "echo $shell_input | ./hsh"
 #
 # It can be empty and multiline
-shell_input="hbtn"
+shell_input="hbtn_ls /var"
 
 ################################################################################
 # The variable 'shell_params' IS OPTIONNAL
@@ -41,12 +41,9 @@ shell_input="hbtn"
 # Return value: Discarded
 function check_setup()
 {
-	LTRACE_ALLOWED_FUNCTIONS_FILE_TMP="${LTRACE_ALLOWED_FUNCTIONS_FILE}_dup"
-	$CP $LTRACE_ALLOWED_FUNCTIONS_FILE $LTRACE_ALLOWED_FUNCTIONS_FILE_TMP
-
-	$CAT $LTRACE_ALLOWED_FUNCTIONS_FILE_TMP | $GREP -vw "fork" > $LTRACE_ALLOWED_FUNCTIONS_FILE
-
-	$RM -f $LTRACE_ALLOWED_FUNCTIONS_FILE_TMP
+	$CP "/bin/ls" "$PWD/hbtn_ls"
+	OLDPATH="$PATH"
+	export PATH="$PWD"
 
 	return 0
 }
@@ -88,6 +85,9 @@ function sh_setup()
 function check_callback()
 {
 	status=$1
+
+	export PATH="$OLDPATH"
+	$RM -f "$PWD/hbtn_ls"
 
 	return $status
 }

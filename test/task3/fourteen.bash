@@ -2,7 +2,7 @@
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# Execute `ls` 4 times (with leading and trailing spaces)
+# Execute both `/bin/ls` and `ls` several times with empty lines and leading and trailing spaces
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -22,6 +22,11 @@
 #
 # It can be empty and multiline
 shell_input="ls
+
+
+ /bin/ls
+
+
      ls
 ls
  ls     "

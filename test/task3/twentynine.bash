@@ -2,7 +2,7 @@
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# Copy the file `/bin/ls` to `hbtn_ls` (in the current directory), set the PATH to PWD, and execute `hbtn_ls /var`
+# Remove PATH variable and set a `PATH1` variable, and execute `ls`
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -21,7 +21,7 @@
 # as follows: "echo $shell_input | ./hsh"
 #
 # It can be empty and multiline
-shell_input="hbtn_ls /var"
+shell_input="hbtn_ls"
 
 ################################################################################
 # The variable 'shell_params' IS OPTIONNAL
@@ -41,9 +41,10 @@ shell_input="hbtn_ls /var"
 # Return value: Discarded
 function check_setup()
 {
-	$CP "/bin/ls" "$PWD/hbtn_ls"
+	cp "/bin/ls" "$PWD/hbtn_ls"
+	export PATH1="$PWD"
 	OLDPATH="$PATH"
-	export PATH="$PWD"
+	unset PATH
 
 	return 0
 }
