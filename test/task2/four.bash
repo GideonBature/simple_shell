@@ -2,7 +2,7 @@
 
 ################################################################################
 # Description for the intranet check (one line, support Markdown syntax)
-# Execute `/bin/ls -l`
+# Echo the string `Holberton`
 
 ################################################################################
 # The variable 'compare_with_sh' IS OPTIONNAL
@@ -21,7 +21,7 @@
 # as follows: "echo $shell_input | ./hsh"
 #
 # It can be empty and multiline
-shell_input="/bin/ls -l"
+shell_input="/bin/echo Holberton"
 
 ################################################################################
 # The variable 'shell_params' IS OPTIONNAL
