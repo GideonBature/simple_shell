@@ -57,9 +57,8 @@ label:
 		else
 		{
 			perror("");
-			exit(1);
+			exit(0);
 		}
-		free(lineptr);
 	}
 
 	lineptr = NULL;
@@ -84,11 +83,11 @@ char *_getline(void)
 		if (isatty(fileno(stdin)))
 		{
 			perror("");
-			exit(1);
+			exit(0);
 		}
 		else
 		{
-			exit(1);
+			exit(0);
 		}
 	}
 
@@ -382,5 +381,5 @@ void sig_int_handler(int signum)
 {
 	if (isatty(fileno(stdin)))
 		printf("\n");
-	exit(1);
+	exit(0);
 }

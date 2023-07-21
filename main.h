@@ -15,8 +15,8 @@
 typedef struct env_var {
 	char *key;
 	char *value;
-	env_var *next;
-} envvar;
+/**	env_var *next; */
+} envvar; 
 extern char **environ;
 char *lineptr = NULL;
 
@@ -38,8 +38,8 @@ char *check_cmd(char *argv);
 void execve_cmd(char *cmd, char **argv, char **env);
 char *_strdup(char *str);
 /** char *strtok(char *str, char *sep); */
-envstruct *insert_end(envstruct *head, char *key, char *value);
-char *get_value(envstruct *head, char *key);
+/** envstruct *insert_end(envstruct *head, char *key, char *value);
+char *get_value(envstruct *head, char *key); */
 
 
 void clean_up(void);
