@@ -18,7 +18,7 @@ label:
 		if (isatty(fileno(stdin)))
 			printf("$ ");
 		
-		_getline(); /** lineptr and numbytes accessed and modified from the he    ader file and updated here */
+		_getline(); /** lineptr and numbytes accessed and modified from the header file and updated here */
 
 		printf("25\n");
 		char *cmd = strtok(lineptr, " ");
