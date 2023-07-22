@@ -11,6 +11,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <stdbool.h>
+#include <error.h>
 
 typedef struct env_var {
 	char *key;
@@ -18,6 +19,7 @@ typedef struct env_var {
 /**	env_var *next; */
 } envvar; 
 extern char **environ;
+extern int errno;
 char *lineptr = NULL;
 
 void exit_cmd(void);
