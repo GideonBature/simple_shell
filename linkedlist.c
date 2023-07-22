@@ -1,46 +1,60 @@
 #include "main.h"
 
-envstruct *insert_end(envstruct *head, char *key, char *value)
+envstruct *insert_end(char *key, char *value)
 {
-	if (head == NULL)
+	envstruct *new_node = malloc(sizeof(envstruct));
+	
+	 if (new_node == NULL)
 		return (NULL);
 
-	envstruct new_var;
+	new_node->key = key;
+	new_node->value = value;
+	new_node->next = NULL;
 
-	new_var->key = *key;
-	new_var->value = *value;
-	new_var->next = NULL;
+	if (head == NULL)
+	{
+		head = new_node;
+		free(new_node);
+		return (head);
+	}
 
 	while (head->next != NULL)
-		head++;
+		head = head->next;
 
-	head->next = new_var;
+	head->next = new_node;
+	free(new_node);
+	return (head);
 }
 
-char *get_value(envstruct *head, char *key)
+char *get_value(char *key)
 {
+	envstruct *temp = NULL;
+
 	if (head == NULL)
                 return (NULL);
-
-	if ((head->next == NULL) && (head->key == key))
-		return (head->value);
-
-	while (head->next != NULL)
+	
+	printf("%s 0", head->value);
+	temp = head;
+	while (temp != NULL)
 	{
-		if (head->key == key)
-			return (head->value);
-		head = head->next;
+		if (temp->key == key)
+			return (temp->value);
+//		printf("%s 1", temp->value);
+		temp = temp->next;
 	}
+
+	if (temp->key == key)
+		return (temp->value);
 
 	return (NULL);
 }
 
-int remove_value(envstruct *head, char *key)
+int remove_value(char *key)
 {
 	envstruct *previous = NULL, *current = NULL, *next_node = NULL;
 
 	if (head == NULL)
-                return (NULL);
+                return (1);
 
 	if ((head->next == NULL) && (head->key == key))
 	{
@@ -48,12 +62,11 @@ int remove_value(envstruct *head, char *key)
 		return (0);
 	}
 
-	while (head->next != NULL)
+	while (head != NULL)
         {
                 if (head->key == key)
 		{
-			previous->next = next_node
-			current->next = NULL;
+			previous->next = next_node;
                         return (0);
 		}
 		previous = head;
