@@ -223,11 +223,12 @@ void init_env_list()
 
 	while (*environ != NULL)
 	{
-		while( token != NULL ) {
-			printf( " %s\n", token ); //printing each token
-			token = strtok(NULL, " ");
+		char *key = strtok(environ, "="), *val = NULL;
+		while( environ != NULL ) {
+			val = strtok(NULL, " ");
+			printf( "%s, %s\n", key, val); //printing each token
 		}
-		insert_end();
+		insert_end(key, val);
 
 		*environ++;
 	}
