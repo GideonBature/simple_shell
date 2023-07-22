@@ -56,7 +56,8 @@ label:
 		}
 		else
 		{
-			perror("");
+			int err_str = errno;
+			printf("%s\n", strerror(err_str));
 			exit(0);
 		}
 	}
@@ -82,7 +83,8 @@ char *_getline(void)
 	{
 		if (isatty(fileno(stdin)))
 		{
-			perror("");
+			int err_str = errno;
+			printf("%s\n", strerror(err_str));
 			exit(0);
 		}
 		else
@@ -174,13 +176,15 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
 
 		if (child_pid == -1)
 		{
-			perror("");
+			int err_str = errno;
+			printf("%s\n", strerror(err_str));
 			exit(1);
 		}
 		else if (child_pid == 0)
 		{
 			execve_cmd(full_path, argv, envp);
-			perror("");
+			int err_str = errno;
+			printf("%s\n", strerror(err_str));
 			exit(1);
 		}
 		else
@@ -352,7 +356,8 @@ void execve_cmd(char *cmd, char **argv, char **envp)
 	printf("324\n");
 	if (execve(cmd, argv, envp) == -1)
 	{
-		perror("");
+		int err_str = errno;
+		printf("%s\n", strerror(err_str));
 		exit(0);
 	}
 }
