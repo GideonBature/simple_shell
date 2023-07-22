@@ -17,7 +17,7 @@ int main(void)
 label:
 		if (isatty(fileno(stdin)))
 			printf("$ ");
-		
+
 		_getline(); /** lineptr and numbytes accessed and modified from the he    ader file and updated here */
 
 		printf("25\n");
@@ -106,7 +106,7 @@ char *_getline(void)
  * @cmd: the command checked
  *
  * Return: 0 or 1
-*/
+ */
 int is_builtin_cmd(char *cmd)
 {
 	int i = 0;
@@ -128,7 +128,7 @@ int is_builtin_cmd(char *cmd)
  * @argv: argument vector - points to arguments entered
  *
  * Return: void
-*/
+ */
 void exec_builtin_cmd(char **argv)
 {
 	if (strstr(argv[0], "exit") == argv[0])
@@ -160,7 +160,7 @@ void exec_builtin_cmd(char **argv)
  * @envp: argument variable
  *
  * Return: void
-*/
+ */
 void exec_executable_cmd(char *cmd, char **argv, char **envp)
 {
 	printf("334\n");
@@ -196,17 +196,17 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
  * exit_cmd - exits/terminates the shell
  *
  * Return: void
-*/
-void exit_cmd(void)
+ */
+void exit_cmd(int exit_code)
 {
-	exit(0);
+	exit(exit_code);
 }
 
 /**
  * env_cmd - lists all environment variables
  *
  * Return: void
-*/
+ */
 void env_cmd(void)
 {
 	int i = 0;
@@ -218,12 +218,28 @@ void env_cmd(void)
 	}
 }
 
+void init_env_list()
+{
+	env_head = malloc(sizeof(envstruct));
+
+	while (*environ != NULL)
+	{
+		while( token != NULL ) {
+			printf( " %s\n", token ); //printing each token
+			token = strtok(NULL, " ");
+		}
+		insert_end();
+
+		*environ++;
+	}
+}
+
 /**
  * setenv_cmd - sets environment variable
  * @argv: argument vector
  *
  * Return: void
-*/
+ */
 void setenv_cmd(char **argv)
 {
 
@@ -234,7 +250,7 @@ void setenv_cmd(char **argv)
  * @argv: argument vector
  *
  * Return: void
-*/
+ */
 void unsetenv_cmd(char **argv)
 {
 
@@ -245,7 +261,7 @@ void unsetenv_cmd(char **argv)
  * @argv: argument vector
  *
  * Return: void
-*/
+ */
 void cd_cmd(char **argv)
 {
 
@@ -258,7 +274,7 @@ void cd_cmd(char **argv)
  * @str: the string to be dublicated
  *
  * Return: string or NULL
-*/
+ */
 char *_strdup(char *str)
 {
 	printf("251\n");
@@ -285,7 +301,7 @@ char *_strdup(char *str)
  * @cmd: commands (tokens)
  *
  * Return: void
-*/
+ */
 char *check_cmd(char *cmd)
 {
 	if (cmd[0] == '/')
@@ -347,7 +363,7 @@ char *check_cmd(char *cmd)
  * @envp: argument variable
  *
  * Return: void
-*/
+ */
 void execve_cmd(char *cmd, char **argv, char **envp)
 {
 	printf("324\n");
@@ -364,7 +380,7 @@ void execve_cmd(char *cmd, char **argv, char **envp)
  * clean_up - frees the lineptr upon exit
  *
  * Return: void
-*/
+ */
 void clean_up(void)
 {
 	if (lineptr != NULL)
@@ -376,7 +392,7 @@ void clean_up(void)
  * @signum: the signal passed
  *
  * Return: void
-*/
+ */
 
 void sig_int_handler(int signum)
 {
