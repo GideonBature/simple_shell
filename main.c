@@ -219,8 +219,6 @@ void env_cmd(void)
 
 void init_env_list()
 {
-	env_head = malloc(sizeof(envstruct));
-
 	while (*environ != NULL)
 	{
 		char *key = strtok(environ, "="), *val = NULL;
