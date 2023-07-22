@@ -11,7 +11,7 @@
 #include <sys/wait.h>
 #include <unistd.h>
 #include <stdbool.h>
-#include <error.h>
+#include <errno.h>
 
 typedef struct env_var {
 	char *key;
@@ -19,15 +19,15 @@ typedef struct env_var {
 /**	env_var *next; */
 } envvar; 
 extern char **environ;
-extern int errno;
+
 char *lineptr = NULL;
 
 void exit_cmd(void);
 void env_cmd(void);
 
-void setenv_cmd(char **argv);
+/** void setenv_cmd(char **argv);
 void unsetenv_cmd(char **argv);
-void cd_cmd(char **argv);
+void cd_cmd(char **argv); */
 
 void exec_builtin_cmd(char **argv);
 void exec_executable_cmd(char *cmd, char **argv, char **env);
@@ -43,8 +43,11 @@ char *_strdup(char *str);
 /** envstruct *insert_end(envstruct *head, char *key, char *value);
 char *get_value(envstruct *head, char *key); */
 
+typedef void (*sighandler_t)(int);
+
 
 void clean_up(void);
 void sig_int_handler(int signum);
+
 
 #endif

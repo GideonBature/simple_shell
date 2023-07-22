@@ -13,21 +13,17 @@ int main(void)
 
 	while (1)
 	{
-		printf("19\n");
+		char *cmd;
+		char *argv[100];
+		int i = 0;
 label:
 		if (isatty(fileno(stdin)))
 			printf("$ ");
-		
-		_getline(); /** lineptr and numbytes accessed and modified from the header file and updated here */
 
-		printf("25\n");
-		char *cmd = strtok(lineptr, " ");
+		_getline();
 
-		printf("27\n");
-		char *argv[100];
-		int i = 0;
+		cmd = strtok(lineptr, " ");
 
-		printf("31\n");
 		if (cmd == NULL)
 		{
 			free(lineptr);
@@ -37,7 +33,6 @@ label:
 
 		while (cmd != NULL)
 		{
-			printf("34\n");
 			argv[i] = cmd;
 			cmd = strtok(NULL, " ");
 			i++;
@@ -46,17 +41,16 @@ label:
 
 		if (is_builtin_cmd(argv[0]))
 		{
-			printf("43\n");
 			exec_builtin_cmd(argv);
 		}
 		else if (argv[0] != NULL)
 		{
-			printf("32\n");
 			exec_executable_cmd(argv[0], argv, environ);
 		}
 		else
 		{
 			int err_str = errno;
+
 			printf("%s\n", strerror(err_str));
 			exit(0);
 		}
@@ -84,6 +78,7 @@ char *_getline(void)
 		if (isatty(fileno(stdin)))
 		{
 			int err_str = errno;
+
 			printf("%s\n", strerror(err_str));
 			exit(0);
 		}
@@ -142,15 +137,15 @@ void exec_builtin_cmd(char **argv)
 	}
 	if (strstr(argv[0], "setenv") == argv[0])
 	{
-		setenv_cmd(argv);
+		/** setenv_cmd(argv); */
 	}
 	if (strstr(argv[0], "unsetenv") == argv[0])
 	{
-		unsetenv_cmd(argv);
+		/** unsetenv_cmd(argv); */
 	}
 	if (strstr(argv[0], "cd") == argv[0])
 	{
-		cd_cmd(argv);
+		/** cd_cmd(argv); */
 	}
 }
 
@@ -164,32 +159,37 @@ void exec_builtin_cmd(char **argv)
 */
 void exec_executable_cmd(char *cmd, char **argv, char **envp)
 {
-	printf("334\n");
-	pid_t child_pid;
-	int status;
+	char *full_path;
 
-	char *full_path = check_cmd(cmd);
+	printf("0");
 
+	full_path = check_cmd(cmd);
 	if (full_path != NULL)
 	{
+		pid_t child_pid;
+		int status;
+
 		child_pid = fork();
 
 		if (child_pid == -1)
 		{
 			int err_str = errno;
+
 			printf("%s\n", strerror(err_str));
 			exit(1);
 		}
 		else if (child_pid == 0)
 		{
+			int err_str;
+
 			execve_cmd(full_path, argv, envp);
-			int err_str = errno;
+			err_str = errno;
 			printf("%s\n", strerror(err_str));
 			exit(1);
 		}
 		else
 		{
-			waitpid(child_pid, &status, 0);
+			wait(&status);
 		}
 	}
 	free(full_path);
@@ -221,40 +221,6 @@ void env_cmd(void)
 	}
 }
 
-/**
- * setenv_cmd - sets environment variable
- * @argv: argument vector
- *
- * Return: void
-*/
-void setenv_cmd(char **argv)
-{
-
-}
-
-/**
- * unsetenv_cmd - remove environment variable set
- * @argv: argument vector
- *
- * Return: void
-*/
-void unsetenv_cmd(char **argv)
-{
-
-}
-
-/**
- * cd_cmd - change directory
- * @argv: argument vector
- *
- * Return: void
-*/
-void cd_cmd(char **argv)
-{
-
-}
-
-
 
 /**
  * _strdup - duplicates string along their memory size
@@ -264,7 +230,6 @@ void cd_cmd(char **argv)
 */
 char *_strdup(char *str)
 {
-	printf("251\n");
 	int str_len;
 	char *new_str;
 
@@ -300,21 +265,24 @@ char *check_cmd(char *cmd)
 	}
 	else
 	{
-		printf("279\n");
 		int dir_len, cmd_len;
+		char *dir;
 		char *path = getenv("PATH");
+		char *path_dup;
 
 		if (path == NULL)
 			return (NULL);
 
-		char *path_dup = _strdup(path);
-		char *dir = strtok(path_dup, ":");
+
+		path_dup = _strdup(path);
+		dir = strtok(path_dup, ":");
 
 		while (dir)
 		{
+			char *full_path;
+
 			dir_len = strlen(dir);
 			cmd_len = strlen(cmd);
-			char *full_path;
 
 			full_path = malloc((dir_len + cmd_len + 2) * sizeof(char));
 
@@ -353,10 +321,10 @@ char *check_cmd(char *cmd)
 */
 void execve_cmd(char *cmd, char **argv, char **envp)
 {
-	printf("324\n");
 	if (execve(cmd, argv, envp) == -1)
 	{
 		int err_str = errno;
+
 		printf("%s\n", strerror(err_str));
 		exit(0);
 	}
@@ -382,7 +350,7 @@ void clean_up(void)
  * Return: void
 */
 
-void sig_int_handler(int signum)
+void sig_int_handler(int signum __attribute__((unused)))
 {
 	if (isatty(fileno(stdin)))
 		printf("\n");
