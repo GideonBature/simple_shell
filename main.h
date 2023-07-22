@@ -17,11 +17,11 @@ typedef struct env_var {
 	char *value;
 	struct env_var *next;
 } envstruct;
-envstruct env_head = NULL;
+envstruct *head = NULL;
 extern char **environ;
 char *lineptr = NULL;
 
-void exit_cmd(void);
+void exit_cmd(int);
 void env_cmd(void);
 
 void setenv_cmd(char **argv);
