@@ -15,8 +15,9 @@
 typedef struct env_var {
 	char *key;
 	char *value;
-	env_var *next;
-} envvar;
+	struct env_var *next;
+} envstruct;
+envstruct env_head = NULL;
 extern char **environ;
 char *lineptr = NULL;
 
