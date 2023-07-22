@@ -54,8 +54,9 @@ label:
 			printf("%s\n", strerror(err_str));
 			exit(0);
 		}
+		free(lineptr);
 	}
-
+	free(lineptr);
 	lineptr = NULL;
 	return (0);
 }
