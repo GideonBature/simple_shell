@@ -17,8 +17,8 @@ int main(void)
 label:
 		if (isatty(fileno(stdin)))
 			printf("$ ");
-
-		_getline(); /** lineptr and numbytes accessed and modified from the he    ader file and updated here */
+		
+		_getline(); /** lineptr and numbytes accessed and modified from the header file and updated here */
 
 		printf("25\n");
 		char *cmd = strtok(lineptr, " ");
@@ -57,9 +57,8 @@ label:
 		else
 		{
 			perror("");
-			exit(1);
+			exit(0);
 		}
-		free(lineptr);
 	}
 
 	lineptr = NULL;
@@ -84,11 +83,11 @@ char *_getline(void)
 		if (isatty(fileno(stdin)))
 		{
 			perror("");
-			exit(1);
+			exit(0);
 		}
 		else
 		{
-			exit(1);
+			exit(0);
 		}
 	}
 
@@ -398,5 +397,5 @@ void sig_int_handler(int signum)
 {
 	if (isatty(fileno(stdin)))
 		printf("\n");
-	exit(1);
+	exit(0);
 }
