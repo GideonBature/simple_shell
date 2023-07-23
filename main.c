@@ -161,37 +161,30 @@ void exec_builtin_cmd(char **argv)
 void exec_executable_cmd(char *cmd, char **argv, char **envp)
 {
 	char *full_path;
-
-	printf("0");
+	pid_t child_pid;
+	int status;
 
 	full_path = check_cmd(cmd);
-	if (full_path != NULL)
+
+	if (full_path == NULL)
+		return;
+
+	child_pid = fork();
+
+	if (child_pid == -1)
 	{
-		pid_t child_pid;
-		int status;
+		int err_str = errno;
 
-		child_pid = fork();
-
-		if (child_pid == -1)
-		{
-			int err_str = errno;
-
-			printf("%s\n", strerror(err_str));
-			exit(1);
-		}
-		else if (child_pid == 0)
-		{
-			int err_str;
-
-			execve_cmd(full_path, argv, envp);
-			err_str = errno;
-			printf("%s\n", strerror(err_str));
-			exit(1);
-		}
-		else
-		{
-			wait(&status);
-		}
+		printf("%s\n", strerror(err_str));
+		exit(1);
+	}
+	else if (child_pid == 0)
+	{
+		execve_cmd(full_path, argv, envp);
+	}
+	else
+	{
+		wait(&status);
 	}
 	free(full_path);
 }
@@ -297,6 +290,7 @@ char *check_cmd(char *cmd)
 			strcpy(full_path, dir);
 			strcat(full_path, "/");
 			strcat(full_path, cmd);
+
 			if (access(full_path, X_OK) == 0)
 			{
 				free(path_dup);
