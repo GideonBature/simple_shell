@@ -33,17 +33,21 @@ label:
 
 		while (cmd != NULL)
 		{
+			if (feof)
+			{
+				continue;
+			}
 			argv[i] = cmd;
 			cmd = strtok(NULL, " ");
 			i++;
 		}
 		argv[i] = NULL;
 
-		if (is_builtin_cmd(argv[0]))
+		if (is_builtin_cmd(argv[0]) == 1)
 		{
 			exec_builtin_cmd(argv);
 		}
-		else if (argv[0] != NULL)
+		else if (is_builtin_cmd(argv[0]) == 0)
 		{
 			exec_executable_cmd(argv[0], argv, environ);
 		}
@@ -54,10 +58,7 @@ label:
 			printf("%s\n", strerror(err_str));
 			exit(0);
 		}
-		free(lineptr);
 	}
-	free(lineptr);
-	lineptr = NULL;
 	return (0);
 }
 
@@ -76,16 +77,20 @@ char *_getline(void)
 
 	if (linelen == -1)
 	{
-		if (isatty(fileno(stdin)))
+		if (feof(stdin))
 		{
-			int err_str = errno;
-
-			printf("%s\n", strerror(err_str));
+			if (isatty(fileno(stdin)))
+			{
+				printf("\n");
+			}
 			exit(0);
 		}
 		else
 		{
-			exit(0);
+			int err_str = errno;
+
+			printf("%s\n", strerror(err_str));
+			exit(1);
 		}
 	}
 
@@ -163,11 +168,14 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
 	char *full_path;
 	pid_t child_pid;
 	int status;
+	bool freed;
 
 	full_path = check_cmd(cmd);
 
 	if (full_path == NULL)
 		return;
+
+	freed = false;
 
 	child_pid = fork();
 
@@ -186,7 +194,12 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
 	{
 		wait(&status);
 	}
-	free(full_path);
+
+	if (full_path != NULL && freed == false)
+	{
+		free(full_path);
+		freed = true;
+	}
 }
 
 /**
@@ -261,8 +274,8 @@ char *check_cmd(char *cmd)
 	{
 		int dir_len, cmd_len;
 		char *dir;
-		char *path = getenv("PATH");
 		char *path_dup;
+		char *path = getenv("PATH");
 
 		if (path == NULL)
 			return (NULL);
@@ -274,6 +287,8 @@ char *check_cmd(char *cmd)
 		while (dir)
 		{
 			char *full_path;
+
+			full_path = NULL;
 
 			dir_len = strlen(dir);
 			cmd_len = strlen(cmd);
@@ -298,9 +313,11 @@ char *check_cmd(char *cmd)
 			}
 
 			free(full_path);
+			full_path = NULL;
 			dir = strtok(NULL, ":");
 		}
 		free(path_dup);
+		path_dup = NULL;
 	}
 
 	return (NULL);
