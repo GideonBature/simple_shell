@@ -325,7 +325,6 @@ void execve_cmd(char *cmd, char **argv, char **envp)
 {
 	if (execve(cmd, argv, envp) == -1)
 	{
-		perror("");
 		exit(0);
 	}
 }
