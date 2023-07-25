@@ -10,7 +10,7 @@ int main(void)
 {
 	atexit(clean_up);
 	signal(SIGINT, sig_int_handler);
-	//	envstruct *head = NULL;
+	/**	envstruct *head = NULL; */
 
 	while (1)
 	{
@@ -54,7 +54,7 @@ label:
 			exit(0);
 		}
 	}
-	//	free_list(head);
+	/**	free_list(head); */
 	return (0);
 }
 
@@ -137,11 +137,11 @@ void exec_builtin_cmd(char **argv)
 	}
 	if (strstr(argv[0], "setenv") == argv[0])
 	{
-		/** setenv_cmd(argv); */
+		setenv_cmd(argv);
 	}
 	if (strstr(argv[0], "unsetenv") == argv[0])
 	{
-		/** unsetenv_cmd(argv); */
+		unsetenv_cmd(argv);
 	}
 	if (strstr(argv[0], "cd") == argv[0])
 	{
@@ -198,6 +198,7 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
 
 /**
  * exit_cmd - exits/terminates the shell
+ * @exit_code: exit status code
  *
  * Return: void
  */
@@ -222,14 +223,20 @@ void env_cmd(void)
 	}
 }
 
+/**
+ * init_env_list - Intialise environment variables
+ * @head: head node
+ */
 void init_env_list(envstruct *head)
 {
 	while (*environ != NULL)
 	{
 		char *key = strtok(*environ, "="), *val = NULL;
-		while( environ != NULL ) {
+
+		while (environ != NULL)
+		{
 			val = strtok(NULL, " ");
-			printf( "%s, %s\n", key, val); //printing each token
+			printf("%s, %s\n", key, val); /**printing each token */
 		}
 		head = insert_end(head, key, val);
 
@@ -240,13 +247,13 @@ void init_env_list(envstruct *head)
 /**
  * setenv_cmd - sets environment variable
  * @argv: argument vector
- *
- * Return: void
+ * @head: head node
  */
 void setenv_cmd(char **argv, envstruct *head)
 {
+	printf("%s\n", *argv[1]);
 	if (argv != NULL)
-		insert_end(head, &(*argv[0]), &(*argv[1]));
+		insert_end(head, &(*argv[1]), &(*argv[2]));
 	else
 		perror("Error");
 }
@@ -254,13 +261,12 @@ void setenv_cmd(char **argv, envstruct *head)
 /**
  * unsetenv_cmd - remove environment variable set
  * @argv: argument vector
- *
- * Return: void
+ * @head: head node
  */
 void unsetenv_cmd(char **argv, envstruct *head)
 {
 	if (argv != NULL)
-		remove_value(&head, &(*argv[0]));
+		remove_value(&head, &(*argv[1]));
 	else
 		perror("Error");
 }
