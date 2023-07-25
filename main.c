@@ -13,21 +13,17 @@ int main(void)
 
 	while (1)
 	{
-		printf("19\n");
+		char *cmd;
+		char *argv[100];
+		int i = 0;
 label:
 		if (isatty(fileno(stdin)))
 			printf("$ ");
-		
-		_getline(); /** lineptr and numbytes accessed and modified from the header file and updated here */
 
-		printf("25\n");
-		char *cmd = strtok(lineptr, " ");
+		_getline();
 
-		printf("27\n");
-		char *argv[100];
-		int i = 0;
+		cmd = strtok(lineptr, " ");
 
-		printf("31\n");
 		if (cmd == NULL)
 		{
 			free(lineptr);
@@ -37,31 +33,32 @@ label:
 
 		while (cmd != NULL)
 		{
-			printf("34\n");
+			if (feof)
+			{
+				continue;
+			}
 			argv[i] = cmd;
 			cmd = strtok(NULL, " ");
 			i++;
 		}
 		argv[i] = NULL;
 
-		if (is_builtin_cmd(argv[0]))
+		if (is_builtin_cmd(argv[0]) == 1)
 		{
-			printf("43\n");
 			exec_builtin_cmd(argv);
 		}
-		else if (argv[0] != NULL)
+		else if (is_builtin_cmd(argv[0]) == 0)
 		{
-			printf("32\n");
 			exec_executable_cmd(argv[0], argv, environ);
 		}
 		else
 		{
-			perror("");
+			int err_str = errno;
+
+			printf("%s\n", strerror(err_str));
 			exit(0);
 		}
 	}
-
-	lineptr = NULL;
 	return (0);
 }
 
@@ -80,14 +77,20 @@ char *_getline(void)
 
 	if (linelen == -1)
 	{
-		if (isatty(fileno(stdin)))
+		if (feof(stdin))
 		{
-			perror("");
+			if (isatty(fileno(stdin)))
+			{
+				printf("\n");
+			}
 			exit(0);
 		}
 		else
 		{
-			exit(0);
+			int err_str = errno;
+
+			printf("%s\n", strerror(err_str));
+			exit(1);
 		}
 	}
 
@@ -140,15 +143,15 @@ void exec_builtin_cmd(char **argv)
 	}
 	if (strstr(argv[0], "setenv") == argv[0])
 	{
-		setenv_cmd(argv);
+		/** setenv_cmd(argv); */
 	}
 	if (strstr(argv[0], "unsetenv") == argv[0])
 	{
-		unsetenv_cmd(argv);
+		/** unsetenv_cmd(argv); */
 	}
 	if (strstr(argv[0], "cd") == argv[0])
 	{
-		cd_cmd(argv);
+		/** cd_cmd(argv); */
 	}
 }
 
@@ -162,33 +165,41 @@ void exec_builtin_cmd(char **argv)
  */
 void exec_executable_cmd(char *cmd, char **argv, char **envp)
 {
-	printf("334\n");
+	char *full_path;
 	pid_t child_pid;
 	int status;
+	bool freed;
 
-	char *full_path = check_cmd(cmd);
+	full_path = check_cmd(cmd);
 
-	if (full_path != NULL)
+	if (full_path == NULL)
+		return;
+
+	freed = false;
+
+	child_pid = fork();
+
+	if (child_pid == -1)
 	{
-		child_pid = fork();
+		int err_str = errno;
 
-		if (child_pid == -1)
-		{
-			perror("");
-			exit(1);
-		}
-		else if (child_pid == 0)
-		{
-			execve_cmd(full_path, argv, envp);
-			perror("");
-			exit(1);
-		}
-		else
-		{
-			waitpid(child_pid, &status, 0);
-		}
+		printf("%s\n", strerror(err_str));
+		exit(1);
 	}
-	free(full_path);
+	else if (child_pid == 0)
+	{
+		execve_cmd(full_path, argv, envp);
+	}
+	else
+	{
+		wait(&status);
+	}
+
+	if (full_path != NULL && freed == false)
+	{
+		free(full_path);
+		freed = true;
+	}
 }
 
 /**
@@ -265,8 +276,6 @@ void cd_cmd(char **argv)
 
 }
 
-
-
 /**
  * _strdup - duplicates string along their memory size
  * @str: the string to be dublicated
@@ -275,7 +284,6 @@ void cd_cmd(char **argv)
  */
 char *_strdup(char *str)
 {
-	printf("251\n");
 	int str_len;
 	char *new_str;
 
@@ -311,21 +319,26 @@ char *check_cmd(char *cmd)
 	}
 	else
 	{
-		printf("279\n");
 		int dir_len, cmd_len;
+		char *dir;
+		char *path_dup;
 		char *path = getenv("PATH");
 
 		if (path == NULL)
 			return (NULL);
 
-		char *path_dup = _strdup(path);
-		char *dir = strtok(path_dup, ":");
+
+		path_dup = _strdup(path);
+		dir = strtok(path_dup, ":");
 
 		while (dir)
 		{
+			char *full_path;
+
+			full_path = NULL;
+
 			dir_len = strlen(dir);
 			cmd_len = strlen(cmd);
-			char *full_path;
 
 			full_path = malloc((dir_len + cmd_len + 2) * sizeof(char));
 
@@ -339,6 +352,7 @@ char *check_cmd(char *cmd)
 			strcpy(full_path, dir);
 			strcat(full_path, "/");
 			strcat(full_path, cmd);
+
 			if (access(full_path, X_OK) == 0)
 			{
 				free(path_dup);
@@ -346,9 +360,11 @@ char *check_cmd(char *cmd)
 			}
 
 			free(full_path);
+			full_path = NULL;
 			dir = strtok(NULL, ":");
 		}
 		free(path_dup);
+		path_dup = NULL;
 	}
 
 	return (NULL);
@@ -364,10 +380,11 @@ char *check_cmd(char *cmd)
  */
 void execve_cmd(char *cmd, char **argv, char **envp)
 {
-	printf("324\n");
 	if (execve(cmd, argv, envp) == -1)
 	{
-		perror("");
+		int err_str = errno;
+
+		printf("%s\n", strerror(err_str));
 		exit(0);
 	}
 }
@@ -392,7 +409,7 @@ void clean_up(void)
  * Return: void
  */
 
-void sig_int_handler(int signum)
+void sig_int_handler(int signum __attribute__((unused)))
 {
 	if (isatty(fileno(stdin)))
 		printf("\n");
