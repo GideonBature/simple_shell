@@ -243,9 +243,12 @@ void init_env_list(envstruct *head)
  *
  * Return: void
  */
-void setenv_cmd(char **argv)
+void setenv_cmd(char **argv, envstruct *head)
 {
-
+	if (argv != NULL)
+		insert_end(head, &(*argv[0]), &(*argv[1]));
+	else
+		perror("Error");
 }
 
 /**
@@ -254,9 +257,12 @@ void setenv_cmd(char **argv)
  *
  * Return: void
  */
-void unsetenv_cmd(char **argv)
+void unsetenv_cmd(char **argv, envstruct *head)
 {
-
+	if (argv != NULL)
+		remove_value(&head, &(*argv[0]));
+	else
+		perror("Error");
 }
 
 /**
