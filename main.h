@@ -48,7 +48,8 @@ char *_strdup(char *str);
 /** char *strtok(char *str, char *sep); */
 envstruct *insert_end(envstruct *head, char *key, char *value);
 char *get_value(envstruct *head, char *key);
-int remove_value(envstruct **head, char *key)
+int remove_value(envstruct **head, char *key);
+void free_list(envstruct *head);
 
 typedef void (*sighandler_t)(int);
 
