@@ -28,7 +28,7 @@ typedef struct env_var
 extern char **environ;
 char *lineptr;
 
-void exit_cmd(int);
+void exit_cmd(void);
 void env_cmd(void);
 
 /** void setenv_cmd(char **argv);

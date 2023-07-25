@@ -19,7 +19,7 @@ int main(void)
 		int i = 0;
 label:
 		if (isatty(fileno(stdin)))
-			printf("$ ");
+			write(1, "$ ", 2);
 
 		_getline();
 
@@ -34,10 +34,6 @@ label:
 
 		while (cmd != NULL)
 		{
-			if (feof)
-			{
-				continue;
-			}
 			argv[i] = cmd;
 			cmd = strtok(NULL, " ");
 			i++;
@@ -54,9 +50,7 @@ label:
 		}
 		else
 		{
-			int err_str = errno;
-
-			printf("%s\n", strerror(err_str));
+			perror("");
 			exit(0);
 		}
 	}
@@ -83,17 +77,12 @@ char *_getline(void)
 		{
 			if (isatty(fileno(stdin)))
 			{
-				printf("\n");
+				write(1, "\n", 1);
 			}
 			exit(0);
 		}
-		else
-		{
-			int err_str = errno;
-
-			printf("%s\n", strerror(err_str));
-			exit(1);
-		}
+		perror("");
+		exit(1);
 	}
 
 	newnumbytes = strcspn(lineptr, "\n");
@@ -175,7 +164,9 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
 	full_path = check_cmd(cmd);
 
 	if (full_path == NULL)
+	{
 		return;
+	}
 
 	freed = false;
 
@@ -183,9 +174,7 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
 
 	if (child_pid == -1)
 	{
-		int err_str = errno;
-
-		printf("%s\n", strerror(err_str));
+		perror("");
 		exit(1);
 	}
 	else if (child_pid == 0)
@@ -318,6 +307,11 @@ char *check_cmd(char *cmd)
 		{
 			return (cmd);
 		}
+		else
+		{
+			perror("");
+			exit(1);
+		}
 	}
 	else
 	{
@@ -384,10 +378,8 @@ void execve_cmd(char *cmd, char **argv, char **envp)
 {
 	if (execve(cmd, argv, envp) == -1)
 	{
-		int err_str = errno;
-
-		printf("%s\n", strerror(err_str));
-		exit(0);
+		perror("");
+		exit(1);
 	}
 }
 
