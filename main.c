@@ -10,7 +10,7 @@ int main(void)
 {
 	atexit(clean_up);
 	signal(SIGINT, sig_int_handler);
-//	envstruct *head = NULL;
+	//	envstruct *head = NULL;
 
 	while (1)
 	{
@@ -54,7 +54,7 @@ label:
 			exit(0);
 		}
 	}
-//	free_list(head);
+	//	free_list(head);
 	return (0);
 }
 
