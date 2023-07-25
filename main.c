@@ -10,6 +10,7 @@ int main(void)
 {
 	atexit(clean_up);
 	signal(SIGINT, sig_int_handler);
+//	envstruct *head = NULL;
 
 	while (1)
 	{
@@ -59,6 +60,7 @@ label:
 			exit(0);
 		}
 	}
+//	free_list(head);
 	return (0);
 }
 
@@ -228,7 +230,7 @@ void env_cmd(void)
 	}
 }
 
-void init_env_list()
+void init_env_list(envstruct *head)
 {
 	while (*environ != NULL)
 	{
@@ -237,7 +239,7 @@ void init_env_list()
 			val = strtok(NULL, " ");
 			printf( "%s, %s\n", key, val); //printing each token
 		}
-		insert_end(key, val);
+		head = insert_end(head, key, val);
 
 		*environ++;
 	}
