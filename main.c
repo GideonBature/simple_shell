@@ -126,7 +126,10 @@ void exec_builtin_cmd(char **argv)
 {
 	if (strstr(argv[0], "exit") == argv[0])
 	{
-		exit_cmd(atoi(argv[1]));
+		if (argv[1] != NULL)
+			exit_cmd(atoi(argv[1]));
+		else
+			exit_cmd(0);
 	}
 	if (strstr(argv[0], "env") == argv[0])
 	{
