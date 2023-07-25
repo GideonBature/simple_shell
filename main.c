@@ -119,6 +119,7 @@ int is_builtin_cmd(char *cmd)
 /**
  * exec_builtin_cmd - execute builtin commands
  * @argv: argument vector - points to arguments entered
+ * @head: head node
  *
  * Return: void
  */
