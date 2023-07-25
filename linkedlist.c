@@ -1,76 +1,101 @@
 #include "main.h"
 
-envstruct *insert_end(char *key, char *value)
-{
-	envstruct *new_node = malloc(sizeof(envstruct));
-	
-	 if (new_node == NULL)
-		return (NULL);
+envstruct *insert_end(envstruct *head, char *key, char *value) {
+    envstruct *new_node = malloc(sizeof(envstruct));
+    if (new_node == NULL) {
+        return NULL;
+    }
 
-	new_node->key = key;
-	new_node->value = value;
-	new_node->next = NULL;
+    new_node->key = strdup(key);
+    new_node->value = strdup(value);
+    new_node->next = NULL;
 
-	if (head == NULL)
-	{
-		head = new_node;
-		free(new_node);
-		return (head);
-	}
+    if (head == NULL) {
+        return new_node;
+    }
 
-	while (head->next != NULL)
-		head = head->next;
+    envstruct *curr = head;
+    while (curr->next != NULL) {
+        curr = curr->next;
+    }
+    curr->next = new_node;
 
-	head->next = new_node;
-	free(new_node);
-	return (head);
+    return head;
 }
 
-char *get_value(char *key)
-{
-	envstruct *temp = NULL;
+char *get_value(envstruct *head, char *key) {
+    if (head == NULL || key == NULL) {
+        return NULL;
+    }
 
-	if (head == NULL)
-                return (NULL);
-	
-	printf("%s 0", head->value);
-	temp = head;
-	while (temp != NULL)
-	{
-		if (temp->key == key)
-			return (temp->value);
-//		printf("%s 1", temp->value);
-		temp = temp->next;
-	}
-
-	if (temp->key == key)
-		return (temp->value);
-
-	return (NULL);
-}
-
-int remove_value(char *key)
-{
-	envstruct *previous = NULL, *current = NULL, *next_node = NULL;
-
-	if (head == NULL)
-                return (1);
-
-	if ((head->next == NULL) && (head->key == key))
-	{
-		head = NULL;
-		return (0);
-	}
-
-	while (head != NULL)
-        {
-                if (head->key == key)
-		{
-			previous->next = next_node;
-                        return (0);
-		}
-		previous = head;
-		head = head->next;
+    envstruct *curr = head;
+    while (curr != NULL) {
+        if (strcmp(curr->key, key) == 0) {
+            return curr->value;
         }
-	return (1);
+        curr = curr->next;
+    }
+
+    return NULL;
 }
+
+int remove_value(envstruct **head, char *key) {
+    if (head == NULL || *head == NULL) {
+        return 1;
+    }
+
+    envstruct *curr = *head;
+    envstruct *prev = NULL;
+
+    while (curr != NULL) {
+        if (strcmp(curr->key, key) == 0) {
+            if (prev == NULL) {
+                *head = curr->next;
+            } else {
+                prev->next = curr->next;
+            }
+            free(curr->key);
+            free(curr->value);
+            free(curr);
+            return 0;
+        }
+
+        prev = curr;
+        curr = curr->next;
+    }
+
+    return 1;
+}
+
+void free_list(envstruct *head) {
+    while (head != NULL) {
+        envstruct *temp = head;
+        head = head->next;
+        free(temp->key);
+        free(temp->value);
+        free(temp);
+    }
+}
+
+/**
+int main(void) {
+    envstruct *head = NULL;
+    head = insert_end(head, "name", "caleb");
+    head = insert_end(head, "class", "3");
+    head = insert_end(head, "age", "121");
+
+    char *name = get_value(head, "name");
+    printf("Name: %s\n", name);
+
+    remove_value(&head, "class");
+    printf("After removing 'class':\n");
+    name = get_value(head, "class");
+    if (name == NULL) {
+        printf("Class not found.\n");
+    }
+
+    free_list(head);
+
+    return 0;
+}
+*/
