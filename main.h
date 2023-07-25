@@ -12,14 +12,21 @@
 #include <unistd.h>
 #include <stdbool.h>
 
-typedef struct env_var {
+/**
+ * env_var - Node for env variables
+ * @key:
+ * @value:
+ * @next:
+ */
+typedef struct env_var
+{
 	char *key;
 	char *value;
 	struct env_var *next;
 } envstruct;
-envstruct *head = NULL;
+envstruct *head;
 extern char **environ;
-char *lineptr = NULL;
+char *lineptr;
 
 void exit_cmd(int);
 void env_cmd(void);
