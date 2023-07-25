@@ -14,10 +14,12 @@
 #include <errno.h>
 
 /**
- * env_var - Node for env variables
- * @key:
- * @value:
- * @next:
+ * struct env_var - Node for env variables
+ * @key: key of Node
+ * @value: value of node
+ * @next: Pointer to next node or NULL
+ *
+ * Description: Forms the structure of the linked list
  */
 typedef struct env_var
 {
