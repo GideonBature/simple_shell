@@ -20,7 +20,7 @@ typedef struct env_var {
 } envvar; 
 extern char **environ;
 
-char *lineptr = NULL;
+char *lineptr;
 
 void exit_cmd(void);
 void env_cmd(void);
