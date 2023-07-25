@@ -10,7 +10,7 @@ int main(void)
 {
 	atexit(clean_up);
 	signal(SIGINT, sig_int_handler);
-	/**	envstruct *head = NULL; */
+	envstruct *head = NULL;
 
 	while (1)
 	{
@@ -42,7 +42,7 @@ label:
 
 		if (is_builtin_cmd(argv[0]) == 1)
 		{
-			exec_builtin_cmd(argv);
+			exec_builtin_cmd(argv, head);
 		}
 		else if (is_builtin_cmd(argv[0]) == 0)
 		{
@@ -54,7 +54,7 @@ label:
 			exit(0);
 		}
 	}
-	/**	free_list(head); */
+	free_list(head);
 	return (0);
 }
 
@@ -122,7 +122,7 @@ int is_builtin_cmd(char *cmd)
  *
  * Return: void
  */
-void exec_builtin_cmd(char **argv)
+void exec_builtin_cmd(char **argv, envstruct *head)
 {
 	if (strstr(argv[0], "exit") == argv[0])
 	{
@@ -137,11 +137,11 @@ void exec_builtin_cmd(char **argv)
 	}
 	if (strstr(argv[0], "setenv") == argv[0])
 	{
-		setenv_cmd(argv);
+		setenv_cmd(argv, head);
 	}
 	if (strstr(argv[0], "unsetenv") == argv[0])
 	{
-		unsetenv_cmd(argv);
+		unsetenv_cmd(argv, head);
 	}
 	if (strstr(argv[0], "cd") == argv[0])
 	{
@@ -251,11 +251,13 @@ void init_env_list(envstruct *head)
  */
 void setenv_cmd(char **argv, envstruct *head)
 {
-	printf("%s\n", *argv[1]);
 	if (argv != NULL)
-		insert_end(head, &(*argv[1]), &(*argv[2]));
-	else
-		perror("Error");
+	{
+		if ((*(argv + 1) != NULL) && (*(argv + 2) != NULL))
+			insert_end(head, *(argv + 1), *(argv + 2));
+		else
+			perror("setenv_cmd insert Error");
+	}
 }
 
 /**
@@ -266,9 +268,12 @@ void setenv_cmd(char **argv, envstruct *head)
 void unsetenv_cmd(char **argv, envstruct *head)
 {
 	if (argv != NULL)
-		remove_value(&head, &(*argv[1]));
-	else
-		perror("Error");
+	{
+		if ((*(argv + 1) != NULL))
+			remove_value(&head, *(argv + 1));
+		else
+			perror("setenv_cmd remove Error");
+	}
 }
 
 /**
@@ -397,8 +402,6 @@ void execve_cmd(char *cmd, char **argv, char **envp)
 		exit(1);
 	}
 }
-
-
 
 /**
  * clean_up - frees the lineptr upon exit
