@@ -79,11 +79,8 @@ char *_getline(void)
 			}
 			exit(0);
 		}
-		else
-		{
-			perror("");
-			exit(1);
-		}
+		perror("");
+		exit(1);
 	}
 
 	newnumbytes = strcspn(lineptr, "\n");
@@ -165,7 +162,9 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
 	full_path = check_cmd(cmd);
 
 	if (full_path == NULL)
+	{
 		return;
+	}
 
 	freed = false;
 
@@ -259,6 +258,11 @@ char *check_cmd(char *cmd)
 		{
 			return (cmd);
 		}
+		else
+		{
+			perror("");
+			exit(1);
+		}
 	}
 	else
 	{
@@ -325,7 +329,8 @@ void execve_cmd(char *cmd, char **argv, char **envp)
 {
 	if (execve(cmd, argv, envp) == -1)
 	{
-		exit(0);
+		perror("");
+		exit(1);
 	}
 }
 
