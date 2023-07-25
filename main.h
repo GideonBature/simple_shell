@@ -35,7 +35,7 @@ void setenv_cmd(char **argv, envstruct *head);
 void unsetenv_cmd(char **argv, envstruct *head);
 /** void cd_cmd(char **argv); */
 
-void exec_builtin_cmd(char **argv);
+void exec_builtin_cmd(char **argv, envstruct *head);
 void exec_executable_cmd(char *cmd, char **argv, char **env);
 
 
