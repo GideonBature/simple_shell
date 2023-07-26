@@ -1,6 +1,8 @@
 #include "main.h"
 int main(void);
 
+char *lineptr;
+
 /**
  * main - Entrance to program
  *
@@ -146,7 +148,10 @@ void exec_builtin_cmd(char **argv, envstruct *head)
 	}
 	if (strstr(argv[0], "cd") == argv[0])
 	{
-		/** cd_cmd(argv); */
+		if (cd_cmd(argv) == -1)
+		{
+			perror("");
+		}
 	}
 }
 
@@ -283,8 +288,18 @@ void unsetenv_cmd(char **argv, envstruct *head)
  *
  * Return: void
  */
-void cd_cmd(char **argv)
+int cd_cmd(char **argv)
 {
+	int stat;
+
+	stat = chdir(argv[1]);
+
+	if (stat == -1)
+	{
+		perror("");
+		return (-1);
+	}
+	return (0);
 
 }
 

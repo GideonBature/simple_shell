@@ -27,14 +27,14 @@ typedef struct env_var
 } envstruct;
 
 extern char **environ;
-char *lineptr;
+extern char *lineptr;
 
 void exit_cmd(int);
 void env_cmd(void);
 
 void setenv_cmd(char **argv, envstruct *head);
 void unsetenv_cmd(char **argv, envstruct *head);
-/** void cd_cmd(char **argv); */
+int cd_cmd(char **argv);
 
 void exec_builtin_cmd(char **argv, envstruct *head);
 void exec_executable_cmd(char *cmd, char **argv, char **env);

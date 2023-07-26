@@ -18,7 +18,8 @@ envstruct *insert_end(envstruct *head, char *key, char *value)
 		return (new_node);
 	}
 
-	envstruct *curr = head;
+	envstruct *curr;
+	curr = head;
 
 	while (curr->next != NULL)
 	{
