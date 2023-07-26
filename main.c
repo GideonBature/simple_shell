@@ -228,6 +228,7 @@ void env_cmd(void)
 		printf("%s\n", environ[i]);
 		i++;
 	}
+	return;
 }
 
 /**
