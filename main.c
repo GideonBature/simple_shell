@@ -12,6 +12,7 @@ int main(void)
 	signal(SIGINT, sig_int_handler);
 	envstruct *head = NULL;
 
+	/** init_env_list(head); */
 	while (1)
 	{
 		char *cmd;
@@ -54,7 +55,7 @@ label:
 			exit(0);
 		}
 	}
-	free_list(head);
+	/** free_list(head); */
 	return (0);
 }
 
@@ -232,17 +233,11 @@ void init_env_list(envstruct *head)
 {
 	while (*environ != NULL)
 	{
-		char *key = strtok(*environ, "="), *val = NULL;
-
-		while (environ != NULL)
-		{
-			val = strtok(NULL, " ");
-			printf("%s, %s\n", key, val); /**printing each token */
-		}
+		char *key = strtok(*environ, "="), *val = strtok(NULL, "=");
 		head = insert_end(head, key, val);
-
 		*environ++;
 	}
+
 }
 
 /**
@@ -255,7 +250,10 @@ void setenv_cmd(char **argv, envstruct *head)
 	if (argv != NULL)
 	{
 		if ((*(argv + 1) != NULL) && (*(argv + 2) != NULL))
-			insert_end(head, *(argv + 1), *(argv + 2));
+		{
+			head = insert_end(head, *(argv + 1), *(argv + 2));
+			print_all(head);
+		}
 		else
 			perror("setenv_cmd insert Error");
 	}
@@ -271,7 +269,10 @@ void unsetenv_cmd(char **argv, envstruct *head)
 	if (argv != NULL)
 	{
 		if ((*(argv + 1) != NULL))
+		{
 			remove_value(&head, *(argv + 1));
+			print_all(head);
+		}
 		else
 			perror("setenv_cmd remove Error");
 	}
