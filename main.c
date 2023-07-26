@@ -52,10 +52,10 @@ label:
 		}
 		else
 		{
-			perror("");
+			perror(" ");
 			if (lineptr != NULL)
 				free(lineptr);
-			exit(0);
+			exit(127);
 		}
 		if (lineptr != NULL)
 			free(lineptr);
