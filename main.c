@@ -10,14 +10,13 @@ char *lineptr = NULL;
  */
 int main(void)
 {
-	envstruct *head = NULL;
-
 	atexit(clean_up);
 	signal(SIGINT, sig_int_handler);
 
-	/** init_env_list(head); */
 	while (1)
 	{
+		envstruct *head = NULL;
+		/** init_env_list(head); */
 		char *cmd;
 		char *argv[100];
 		int i = 0;
@@ -58,7 +57,6 @@ label:
 			exit(0);
 		}
 	}
-	/** free_list(head); */
 	return (0);
 }
 
@@ -237,14 +235,12 @@ void env_cmd(void)
  */
 void init_env_list(envstruct *head)
 {
-	int i = 0;
-
-	while (environ[i] != NULL)
+	while (environ != NULL)
 	{
 		char *key = strtok(*environ, "="), *val = strtok(NULL, "=");
+
 		head = insert_end(head, key, val);
-		*environ++;
-		i++;
+		environ++;
 	}
 }
 
