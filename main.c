@@ -194,7 +194,7 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
 	{
 		wait(&status);
 	}
-	
+
 	if ((full_path != NULL) && (full_path != cmd))
 	{
 		free(full_path);
