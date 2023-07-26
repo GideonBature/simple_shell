@@ -67,6 +67,8 @@ char *get_value(envstruct *head, char *key)
 /**
  * print_all - Get all members of list
  * @head: list root
+ *
+ * Return: 0
  */
 int print_all(envstruct *head)
 {
