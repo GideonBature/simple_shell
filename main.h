@@ -13,23 +13,30 @@
 #include <stdbool.h>
 #include <errno.h>
 
-typedef struct env_var {
+/**
+ * env_var - Node for env variables
+ * @key:
+ * @value:
+ * @next:
+ */
+typedef struct env_var
+{
 	char *key;
 	char *value;
-/**	env_var *next; */
-} envvar; 
+	struct env_var *next;
+} envstruct;
+
 extern char **environ;
+extern char *lineptr;
 
-char *lineptr;
-
-void exit_cmd(void);
+void exit_cmd(int);
 void env_cmd(void);
 
-/** void setenv_cmd(char **argv);
-void unsetenv_cmd(char **argv);
-void cd_cmd(char **argv); */
+void setenv_cmd(char **argv, envstruct *head);
+void unsetenv_cmd(char **argv, envstruct *head);
+int cd_cmd(char **argv);
 
-void exec_builtin_cmd(char **argv);
+void exec_builtin_cmd(char **argv, envstruct *head);
 void exec_executable_cmd(char *cmd, char **argv, char **env);
 
 
@@ -40,11 +47,12 @@ char *check_cmd(char *argv);
 void execve_cmd(char *cmd, char **argv, char **env);
 char *_strdup(char *str);
 /** char *strtok(char *str, char *sep); */
-/** envstruct *insert_end(envstruct *head, char *key, char *value);
-char *get_value(envstruct *head, char *key); */
+envstruct *insert_end(envstruct *head, char *key, char *value);
+char *get_value(envstruct *head, char *key);
+int remove_value(envstruct **head, char *key);
+void free_list(envstruct *head);
 
 typedef void (*sighandler_t)(int);
-
 
 void clean_up(void);
 void sig_int_handler(int signum);

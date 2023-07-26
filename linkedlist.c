@@ -2,30 +2,118 @@
 
 envstruct *insert_end(envstruct *head, char *key, char *value)
 {
-	if (head == NULL)
+	envstruct *curr = head;
+	envstruct *new_node = malloc(sizeof(envstruct));
+
+	if (new_node == NULL)
+	{
 		return (NULL);
+	}
 
-	envstruct new_var;
+	new_node->key = strdup(key);
+	new_node->value = strdup(value);
+	new_node->next = NULL;
 
-	new_var->key = *key;
-	new_var->value = *value;
-	new_var->next = NULL;
+	if (head == NULL)
+	{
+		return (new_node);
+	}
 
-	while (head->next != NULL)
-		head++;
 
-	head->next = new_var;
+	while (curr->next != NULL)
+	{
+		curr = curr->next;
+	}
+	curr->next = new_node;
+
+	return (head);
 }
 
+/**
+ * get_value - gets value of env var
+ * @head: head variable
+ * @key: value variable
+ *
+ * Return: NULL
+*/
 char *get_value(envstruct *head, char *key)
 {
-	if (head == NULL)
-                return (NULL);
+	envstruct *curr = head;
 
-	while (head->next != NULL)
+	if (head == NULL || key == NULL)
 	{
-		if (head->key == key)
-			return (head->value);
-		head++;
+		return (NULL);
+	}
+
+	while (curr != NULL)
+	{
+		if (strcmp(curr->key, key) == 0)
+		{
+			return (curr->value);
+		}
+		curr = curr->next;
+	}
+
+	return (NULL);
+}
+
+/**
+ * remove_value - remove env variable
+ * @head: head variable
+ * @key: key variable
+ *
+ * Return: 0 or 1
+*/
+int remove_value(envstruct **head, char *key)
+{
+	envstruct *curr = *head;
+	envstruct *prev = NULL;
+
+	if (head == NULL || *head == NULL)
+	{
+		return (1);
+	}
+
+	while (curr != NULL)
+	{
+		if (strcmp(curr->key, key) == 0)
+		{
+			if (prev == NULL)
+			{
+				*head = curr->next;
+			}
+			else
+			{
+				prev->next = curr->next;
+			}
+			free(curr->key);
+			free(curr->value);
+			free(curr);
+			return (0);
+		}
+
+		prev = curr;
+		curr = curr->next;
+	}
+
+	return (1);
+}
+
+/**
+ * free_list - frees the list_mem
+ * @head: head variable
+ *
+ * Return: void
+*/
+void free_list(envstruct *head)
+{
+	while (head != NULL)
+	{
+		envstruct *temp = head;
+
+		head = head->next;
+		free(temp->key);
+		free(temp->value);
+		free(temp);
 	}
 }

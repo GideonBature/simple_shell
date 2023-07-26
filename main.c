@@ -1,6 +1,8 @@
 #include "main.h"
 int main(void);
 
+char *lineptr = NULL;
+
 /**
  * main - Entrance to program
  *
@@ -8,6 +10,8 @@ int main(void);
  */
 int main(void)
 {
+	envstruct *head = NULL;
+
 	atexit(clean_up);
 	signal(SIGINT, sig_int_handler);
 
@@ -41,7 +45,7 @@ label:
 
 		if (is_builtin_cmd(argv[0]) == 1)
 		{
-			exec_builtin_cmd(argv);
+			exec_builtin_cmd(argv, head);
 		}
 		else if (is_builtin_cmd(argv[0]) == 0)
 		{
@@ -53,6 +57,7 @@ label:
 			exit(0);
 		}
 	}
+	free_list(head);
 	return (0);
 }
 
@@ -97,7 +102,7 @@ char *_getline(void)
  * @cmd: the command checked
  *
  * Return: 0 or 1
-*/
+ */
 int is_builtin_cmd(char *cmd)
 {
 	int i = 0;
@@ -117,14 +122,18 @@ int is_builtin_cmd(char *cmd)
 /**
  * exec_builtin_cmd - execute builtin commands
  * @argv: argument vector - points to arguments entered
+ * @head: head of lists.
  *
  * Return: void
-*/
-void exec_builtin_cmd(char **argv)
+ */
+void exec_builtin_cmd(char **argv, envstruct *head)
 {
 	if (strstr(argv[0], "exit") == argv[0])
 	{
-		exit_cmd();
+		if (argv[1] != NULL)
+			exit_cmd(atoi(argv[1]));
+		else
+			exit_cmd(0);
 	}
 	if (strstr(argv[0], "env") == argv[0])
 	{
@@ -132,15 +141,18 @@ void exec_builtin_cmd(char **argv)
 	}
 	if (strstr(argv[0], "setenv") == argv[0])
 	{
-		/** setenv_cmd(argv); */
+		setenv_cmd(argv, head);
 	}
 	if (strstr(argv[0], "unsetenv") == argv[0])
 	{
-		/** unsetenv_cmd(argv); */
+		unsetenv_cmd(argv, head);
 	}
 	if (strstr(argv[0], "cd") == argv[0])
 	{
-		/** cd_cmd(argv); */
+		if (cd_cmd(argv) == -1)
+		{
+			perror("");
+		}
 	}
 }
 
@@ -151,7 +163,7 @@ void exec_builtin_cmd(char **argv)
  * @envp: argument variable
  *
  * Return: void
-*/
+ */
 void exec_executable_cmd(char *cmd, char **argv, char **envp)
 {
 	char *full_path;
@@ -193,19 +205,20 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
 
 /**
  * exit_cmd - exits/terminates the shell
+ * @exit_code: exit status code
  *
  * Return: void
-*/
-void exit_cmd(void)
+ */
+void exit_cmd(int exit_code)
 {
-	exit(0);
+	exit(exit_code);
 }
 
 /**
  * env_cmd - lists all environment variables
  *
  * Return: void
-*/
+ */
 void env_cmd(void)
 {
 	int i = 0;
@@ -217,13 +230,88 @@ void env_cmd(void)
 	}
 }
 
+/**
+ * init_env_list - Intialise environment variables
+ * @head: head node
+ */
+void init_env_list(envstruct *head)
+{
+	int i = 0;
+
+	while (environ[i] != NULL)
+	{
+		char *key = strtok(*environ, "="), *val = NULL;
+
+		while (environ != NULL)
+		{
+			val = strtok(NULL, " ");
+			printf("%s, %s\n", key, val); /**printing each token */
+		}
+		head = insert_end(head, key, val);
+
+		i++;
+	}
+}
+
+/**
+ * setenv_cmd - sets environment variable
+ * @argv: argument vector
+ * @head: head node
+ */
+void setenv_cmd(char **argv, envstruct *head)
+{
+	if (argv != NULL)
+	{
+		if ((*(argv + 1) != NULL) && (*(argv + 2) != NULL))
+			insert_end(head, *(argv + 1), *(argv + 2));
+		else
+			perror("setenv_cmd insert Error");
+	}
+}
+
+/**
+ * unsetenv_cmd - remove environment variable set
+ * @argv: argument vector
+ * @head: head node
+ */
+void unsetenv_cmd(char **argv, envstruct *head)
+{
+	if (argv != NULL)
+	{
+		if ((*(argv + 1) != NULL))
+			remove_value(&head, *(argv + 1));
+		else
+			perror("setenv_cmd remove Error");
+	}
+}
+
+/**
+ * cd_cmd - change directory
+ * @argv: argument vector
+ *
+ * Return: void
+ */
+int cd_cmd(char **argv)
+{
+	int stat;
+
+	stat = chdir(argv[1]);
+
+	if (stat == -1)
+	{
+		perror("");
+		return (-1);
+	}
+	return (0);
+
+}
 
 /**
  * _strdup - duplicates string along their memory size
  * @str: the string to be dublicated
  *
  * Return: string or NULL
-*/
+ */
 char *_strdup(char *str)
 {
 	int str_len;
@@ -249,7 +337,7 @@ char *_strdup(char *str)
  * @cmd: commands (tokens)
  *
  * Return: void
-*/
+ */
 char *check_cmd(char *cmd)
 {
 	if (cmd[0] == '/')
@@ -324,7 +412,7 @@ char *check_cmd(char *cmd)
  * @envp: argument variable
  *
  * Return: void
-*/
+ */
 void execve_cmd(char *cmd, char **argv, char **envp)
 {
 	if (execve(cmd, argv, envp) == -1)
@@ -334,13 +422,11 @@ void execve_cmd(char *cmd, char **argv, char **envp)
 	}
 }
 
-
-
 /**
  * clean_up - frees the lineptr upon exit
  *
  * Return: void
-*/
+ */
 void clean_up(void)
 {
 	if (lineptr != NULL)
@@ -352,7 +438,7 @@ void clean_up(void)
  * @signum: the signal passed
  *
  * Return: void
-*/
+ */
 
 void sig_int_handler(int signum __attribute__((unused)))
 {
