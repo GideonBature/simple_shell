@@ -1,7 +1,7 @@
 #include "main.h"
 int main(void);
 
-char *lineptr;
+char *lineptr = NULL;
 
 /**
  * main - Entrance to program
