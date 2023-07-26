@@ -123,11 +123,7 @@ int is_builtin_cmd(char *cmd)
 /**
  * exec_builtin_cmd - execute builtin commands
  * @argv: argument vector - points to arguments entered
-<<<<<<< HEAD
- * @head: head node
-=======
  * @head: head of lists.
->>>>>>> e0ec559d5998b75685d75ab581a10646aac9bbfd
  *
  * Return: void
  */
@@ -247,14 +243,9 @@ void init_env_list(envstruct *head)
 	{
 		char *key = strtok(*environ, "="), *val = strtok(NULL, "=");
 		head = insert_end(head, key, val);
-<<<<<<< HEAD
 		*environ++;
-=======
-
 		i++;
->>>>>>> e0ec559d5998b75685d75ab581a10646aac9bbfd
 	}
-
 }
 
 /**
