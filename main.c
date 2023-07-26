@@ -26,19 +26,18 @@ label:
 
 		_getline();
 
-		cmd = strtok(lineptr, " ");
+		cmd = strtok(lineptr, " \t\n");
 
 		if (cmd == NULL)
 		{
 			free(lineptr);
-			free(cmd);
 			goto label;
 		}
 
 		while (cmd != NULL)
 		{
 			argv[i] = cmd;
-			cmd = strtok(NULL, " ");
+			cmd = strtok(NULL, " \t\n");
 			i++;
 		}
 		argv[i] = NULL;
@@ -54,8 +53,12 @@ label:
 		else
 		{
 			perror("");
+			if (lineptr != NULL)
+				free(lineptr);
 			exit(0);
 		}
+		if (lineptr != NULL)
+			free(lineptr);
 	}
 	return (0);
 }
@@ -168,7 +171,6 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
 	char *full_path;
 	pid_t child_pid;
 	int status;
-	bool freed;
 
 	full_path = check_cmd(cmd);
 
@@ -176,8 +178,6 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
 	{
 		return;
 	}
-
-	freed = false;
 
 	child_pid = fork();
 
@@ -194,11 +194,11 @@ void exec_executable_cmd(char *cmd, char **argv, char **envp)
 	{
 		wait(&status);
 	}
-
-	if (full_path != NULL && freed == false)
+	
+	if ((full_path != NULL) && (full_path != cmd))
 	{
 		free(full_path);
-		freed = true;
+		full_path = NULL;
 	}
 }
 
@@ -337,7 +337,7 @@ char *_strdup(char *str)
  */
 char *check_cmd(char *cmd)
 {
-	if (cmd[0] == '/')
+	if (cmd[0] == '/' || cmd[0] == '.')
 	{
 		if (access(cmd, X_OK) == 0)
 		{
@@ -355,6 +355,7 @@ char *check_cmd(char *cmd)
 		char *dir;
 		char *path_dup;
 		char *path = getenv("PATH");
+		char *full_path = NULL;
 
 		if (path == NULL)
 			return (NULL);
@@ -365,10 +366,6 @@ char *check_cmd(char *cmd)
 
 		while (dir)
 		{
-			char *full_path;
-
-			full_path = NULL;
-
 			dir_len = strlen(dir);
 			cmd_len = strlen(cmd);
 
@@ -395,6 +392,7 @@ char *check_cmd(char *cmd)
 			full_path = NULL;
 			dir = strtok(NULL, ":");
 		}
+		free(full_path);
 		free(path_dup);
 		path_dup = NULL;
 	}
