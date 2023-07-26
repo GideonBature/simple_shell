@@ -69,14 +69,16 @@ char *get_value(envstruct *head, char *key)
  * print_all - Get all members of list
  * @head: list root
  */
-void print_all(envstruct *head)
+int print_all(envstruct *head)
 {
 	envstruct *curr = head;
 
-	while (curr->next != NULL)
+	while (curr != NULL)
 	{
+		printf("%s=%s\n", curr->key, curr->value);
 		curr = curr->next;
 	}
+	return (0);
 }
 
 /**
