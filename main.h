@@ -25,6 +25,7 @@ typedef struct env_var
 	char *value;
 	struct env_var *next;
 } envstruct;
+
 extern char **environ;
 char *lineptr;
 
