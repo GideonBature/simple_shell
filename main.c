@@ -1,6 +1,8 @@
 #include "main.h"
 int main(void);
 
+char *lineptr = NULL;
+
 /**
  * main - Entrance to program
  *
@@ -8,9 +10,10 @@ int main(void);
  */
 int main(void)
 {
+	envstruct *head = NULL;
+
 	atexit(clean_up);
 	signal(SIGINT, sig_int_handler);
-	envstruct *head = NULL;
 
 	/** init_env_list(head); */
 	while (1)
@@ -120,7 +123,11 @@ int is_builtin_cmd(char *cmd)
 /**
  * exec_builtin_cmd - execute builtin commands
  * @argv: argument vector - points to arguments entered
+<<<<<<< HEAD
  * @head: head node
+=======
+ * @head: head of lists.
+>>>>>>> e0ec559d5998b75685d75ab581a10646aac9bbfd
  *
  * Return: void
  */
@@ -147,7 +154,10 @@ void exec_builtin_cmd(char **argv, envstruct *head)
 	}
 	if (strstr(argv[0], "cd") == argv[0])
 	{
-		/** cd_cmd(argv); */
+		if (cd_cmd(argv) == -1)
+		{
+			perror("");
+		}
 	}
 }
 
@@ -231,11 +241,18 @@ void env_cmd(void)
  */
 void init_env_list(envstruct *head)
 {
-	while (*environ != NULL)
+	int i = 0;
+
+	while (environ[i] != NULL)
 	{
 		char *key = strtok(*environ, "="), *val = strtok(NULL, "=");
 		head = insert_end(head, key, val);
+<<<<<<< HEAD
 		*environ++;
+=======
+
+		i++;
+>>>>>>> e0ec559d5998b75685d75ab581a10646aac9bbfd
 	}
 
 }
@@ -284,8 +301,18 @@ void unsetenv_cmd(char **argv, envstruct *head)
  *
  * Return: void
  */
-void cd_cmd(char **argv)
+int cd_cmd(char **argv)
 {
+	int stat;
+
+	stat = chdir(argv[1]);
+
+	if (stat == -1)
+	{
+		perror("");
+		return (-1);
+	}
+	return (0);
 
 }
 

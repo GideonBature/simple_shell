@@ -10,6 +10,7 @@
  */
 envstruct *insert_end(envstruct *head, char *key, char *value)
 {
+	envstruct *curr = head;
 	envstruct *new_node = malloc(sizeof(envstruct));
 
 	if (new_node == NULL)
@@ -26,8 +27,6 @@ envstruct *insert_end(envstruct *head, char *key, char *value)
 		return (new_node);
 	}
 
-	envstruct *curr = head;
-
 	while (curr->next != NULL)
 	{
 		curr = curr->next;
@@ -38,12 +37,12 @@ envstruct *insert_end(envstruct *head, char *key, char *value)
 }
 
 /**
- * get_value - Get value at key
- * @head: list root
- * @key: key of list
+ * get_value - gets value of env var
+ * @head: head variable
+ * @key: value variable
  *
- * Return: Value at given key
- */
+ * Return: NULL
+*/
 char *get_value(envstruct *head, char *key)
 {
 	envstruct *curr = head;
@@ -82,21 +81,21 @@ int print_all(envstruct *head)
 }
 
 /**
- * remove_value - Remove value corresponding to key
- * @head: list root
- * @key: key to remove
+ * remove_value - remove env variable
+ * @head: head variable
+ * @key: key variable
  *
- * Return: Integer for success or failue
- */
+ * Return: 0 or 1
+*/
 int remove_value(envstruct **head, char *key)
 {
+	envstruct *curr = *head;
+	envstruct *prev = NULL;
+
 	if (head == NULL || *head == NULL)
 	{
 		return (1);
 	}
-
-	envstruct *curr = *head;
-	envstruct *prev = NULL;
 
 	while (curr != NULL)
 	{
@@ -124,9 +123,11 @@ int remove_value(envstruct **head, char *key)
 }
 
 /**
- * free_list - Free allocated spaces
- * @head: list root
- */
+ * free_list - frees the list_mem
+ * @head: head variable
+ *
+ * Return: void
+*/
 void free_list(envstruct *head)
 {
 	while (head != NULL)
