@@ -2,6 +2,7 @@
 
 envstruct *insert_end(envstruct *head, char *key, char *value)
 {
+	envstruct *curr = head;
 	envstruct *new_node = malloc(sizeof(envstruct));
 
 	if (new_node == NULL)
@@ -18,8 +19,6 @@ envstruct *insert_end(envstruct *head, char *key, char *value)
 		return (new_node);
 	}
 
-	envstruct *curr;
-	curr = head;
 
 	while (curr->next != NULL)
 	{
@@ -67,13 +66,13 @@ char *get_value(envstruct *head, char *key)
 */
 int remove_value(envstruct **head, char *key)
 {
+	envstruct *curr = *head;
+	envstruct *prev = NULL;
+
 	if (head == NULL || *head == NULL)
 	{
 		return (1);
 	}
-
-	envstruct *curr = *head;
-	envstruct *prev = NULL;
 
 	while (curr != NULL)
 	{

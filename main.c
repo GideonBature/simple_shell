@@ -10,9 +10,10 @@ char *lineptr;
  */
 int main(void)
 {
+	envstruct *head = NULL;
+
 	atexit(clean_up);
 	signal(SIGINT, sig_int_handler);
-	envstruct *head = NULL;
 
 	while (1)
 	{
@@ -235,7 +236,9 @@ void env_cmd(void)
  */
 void init_env_list(envstruct *head)
 {
-	while (*environ != NULL)
+	int i = 0;
+
+	while (environ[i] != NULL)
 	{
 		char *key = strtok(*environ, "="), *val = NULL;
 
@@ -246,7 +249,7 @@ void init_env_list(envstruct *head)
 		}
 		head = insert_end(head, key, val);
 
-		*environ++;
+		i++;
 	}
 }
 
