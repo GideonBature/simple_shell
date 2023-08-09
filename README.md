@@ -5,8 +5,8 @@
 
 _For this project, we expect you to look at these concepts:_
 
-*   [Everything you need to know to start coding your own shell](/concepts/64)
-*   [Approaching a Project](/concepts/350)
+*   [Everything you need to know to start coding your own shell](https://github.com/GideonBature/simple_shell/tree/main/concepts/everything)
+*   [Approaching a Project](https://github.com/GideonBature/simple_shell/tree/main/concepts/approaching)
 
 Background Context
 ------------------
@@ -15,7 +15,7 @@ Write a simple UNIX command interpreter.
 
 ![](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-low_level_programming/235/shell.jpeg)
 
-_^ “The Gates of Shell”, by [Spencer Cheng](/rltoken/AtYRSM03vJDrko9xHodxFQ "Spencer Cheng"), featuring [Julien Barbier](/rltoken/-ezXgcyfhc8qU1DeUInLUA "Julien Barbier")_
+_^ “The Gates of Shell”, by [Spencer Cheng](https://twitter.com/spencerhcheng/status/855104635069054977), featuring [Julien Barbier](https://twitter.com/julienbarbier42)_
 
 Important message from Julien
 -----------------------------
@@ -30,7 +30,7 @@ It’s time for the famous Simple Shell project. This is one of the most anticip
 
 I would like to take this moment to remind you about a few important things.
 
-First, remember the framework. If you do not know it by heart already, it is probably a good idea to read it again: [https://intranet.alxswe.com/concepts/559](/rltoken/a08_c01OP1XHY3awtkdFRA "https://intranet.alxswe.com/concepts/559")
+First, remember the framework. If you do not know it by heart already, it is probably a good idea to read it again: [https://intranet.alxswe.com/concepts/559](https://github.com/GideonBature/simple_shell/tree/main/concepts/framework)
 
 Note that there is no point in this framework that says it is ok to look at code from other people. It is not allowed to look at other people’s code, either other students or online articles or videos. At ALX SE we do not copy solutions and we do not look at it when we start a project.
 
@@ -39,11 +39,11 @@ In the context of learning (some of these will no longer be true when you work):
 *   NEVER copy any code, never look at solution (and never give any solution to your friends, you are not helping them by doing so)
 *   ALWAYS write code alone from scratch after you get help to check that you have actually understood. If you can not do it, you have not understood enough, and need to study more. Do not rewrite code from memory, but from understanding.
 
-I saw some of you sharing resources with each other already. Tutorials on how to do the shell step by step with all the code associated with these, or even video and documents with the solution without even any explanation. This is not the right way to learn. Please do not be tempted by these links. They will only push you to take shortcuts and / or cheat. And trust me, you will be caught. [Kimba](/rltoken/3nocfYiMMxjbhlMllUqLxg "Kimba") is not a joke and he is here to remind you why you are here.
+I saw some of you sharing resources with each other already. Tutorials on how to do the shell step by step with all the code associated with these, or even video and documents with the solution without even any explanation. This is not the right way to learn. Please do not be tempted by these links. They will only push you to take shortcuts and / or cheat. And trust me, you will be caught. [Kimba](https://twitter.com/julienbarbier42/status/1651460956600549376) is not a joke and he is here to remind you why you are here.
 
 While we encourage the use of ChatGPT and co in the framework (also, not right away, but at the right step, see framework), it is important to understand that the same rules apply to these AI tools (again, in the context of learning. When you will work it will be completely different, but context matters). At no point does it say that you are allowed to use copilot or ChatGPT to code the solution. If you do, you will get 200% (for a few hours), understand 0, learn 0, and you will be caught for cheating 100%, and then your score for both you and your partner will be 0%. If you don’t get how to use ChatGPT and other AI tools in the context of learning, simply do not use them.
 
-The reality is that at this point of the program, if you have not cheated before, you have everything you need to complete the project with what you have learned + the page “Everything you need to know to start coding your own shell” [https://intranet.alxswe.com/concepts/64](/rltoken/e6Nw3W01-33JDxlCyKX-Kw "https://intranet.alxswe.com/concepts/64")
+The reality is that at this point of the program, if you have not cheated before, you have everything you need to complete the project with what you have learned + the page “Everything you need to know to start coding your own shell” [https://intranet.alxswe.com/concepts/64](https://github.com/GideonBature/simple_shell/tree/main/concepts/everything)
 
 Actually, you do not even need to open Google once. Focus on your whiteboarding, and everything will fall in place. Remember, at ALX SE you never learn the solution, you learn how to walk toward the solution. You learn to create the tutorial, so if you follow one, you are looking at the solution, you are taking a very serious shortcut that will undermine your learning.
 
@@ -56,7 +56,7 @@ The shell project is a group project. That means you will be paired with someone
 
 A group project at ALX SE is a project that both of you are responsible for. Everything anyone pushes to Github is the responsibility of both partners. It is not ok to say later “I didn’t cheat it’s my partner I didn’t know they didn’t tell me”.
 
-So you are supposed to work TOGETHER. And you should both understand every single line of code that any of you pushes. Here is a link for you to read about pair programming: [https://intranet.alxswe.com/concepts/121](/rltoken/G52zDoV1f2dmmMl3ngchyw "https://intranet.alxswe.com/concepts/121")
+So you are supposed to work TOGETHER. And you should both understand every single line of code that any of you pushes. Here is a link for you to read about pair programming: [https://intranet.alxswe.com/concepts/121](https://github.com/GideonBature/simple_shell/tree/main/concepts/pair_programming)
 
 If you plan on not working on the shell project (or if at any point in time you can’t), it is your responsibility to tell both the staff and your partner so that they can find another partner who will work with them asap.
 
@@ -71,9 +71,9 @@ Resources
 
 **Read or watch**:
 
-*   [Unix shell](/rltoken/f0YU9TAhniMXWlSXtb64Yw "Unix shell")
-*   [Thompson shell](/rltoken/7LJOp2qP7qHUcsOK2-F3qA "Thompson shell")
-*   [Ken Thompson](/rltoken/wTSu31ZP1f7fFTJFgRQC7w "Ken Thompson")
+*   [Unix shell](https://en.wikipedia.org/wiki/Unix_shell)
+*   [Thompson shell](https://en.wikipedia.org/wiki/Thompson_shell)
+*   [Ken Thompson](https://en.wikipedia.org/wiki/Ken_Thompson)
 *   **Everything you need to know to start coding your own shell** concept page
 
 **man or help**:
@@ -83,7 +83,7 @@ Resources
 Learning Objectives
 -------------------
 
-At the end of this project, you are expected to be able to [explain to anyone](/rltoken/9LNz86CtOTos9oL3zxIO3A "explain to anyone"), **without the help of Google**:
+At the end of this project, you are expected to be able to [explain to anyone](https://fs.blog/feynman-learning-technique/), **without the help of Google**:
 
 ### General
 
@@ -124,7 +124,7 @@ Requirements
 *   All your header files should be include guarded
 *   Use system calls only when you need to ([why?](/rltoken/EU7B1PTSy14INnZEShpobQ "why?"))
 *   Write a `README` with the description of your project
-*   You should have an `AUTHORS` file at the root of your repository, listing all individuals having contributed content to the repository. Format, see [Docker](/rltoken/UL8J3kgl7HBK_Z9iBL3JFg "Docker")
+*   You should have an `AUTHORS` file at the root of your repository, listing all individuals having contributed content to the repository. Format, see [Docker](https://github.com/moby/moby/blob/master/AUTHORS)
 
 ### GitHub
 
